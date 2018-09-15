@@ -16,17 +16,17 @@ import org.jetbrains.anko.*
 
 
 /**
- * For Bridge Technology Services
+ * For LEARNING
  * Created by Ridwan Ismail on 01 September 2018
  * You can contact me at : ismail.ridwan98@gmail.com
  * -------------------------------------------------
  * FOOTBALL CLUB
  * com.wanztudio.footballclub.adapters
- * or see link for more detail https://github.com/iwanz98/FootballClub
+ * or see link for more detail https://github.com/iwanz98/FootballApp
  */
 
-class FootballClubAdapter(private val context: Context, private val items: List<ClubItem>, private val listener: (ClubItem) -> Unit)
-    : RecyclerView.Adapter<FootballClubAdapter.ClubViewHolder>() {
+class FootballAppAdapter(private val context: Context, private val items: List<ClubItem>, private val listener: (ClubItem) -> Unit)
+    : RecyclerView.Adapter<FootballAppAdapter.ClubViewHolder>() {
 
 //  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
 //         ViewHolder(LayoutInflater.from(context).inflate(list_item_football_club, parent, false))

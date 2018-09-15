@@ -6,20 +6,20 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.Toast
 import com.wanztudio.footballclub.R.array.*
-import com.wanztudio.footballclub.adapters.FootballClubAdapter
+import com.wanztudio.footballclub.adapters.FootballAppAdapter
 import com.wanztudio.footballclub.models.ClubItem
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 
 /**
- * For Bridge Technology Services
+ * For LEARNING
  * Created by Ridwan Ismail on 01 September 2018
  * You can contact me at : ismail.ridwan98@gmail.com
  * -------------------------------------------------
  * FOOTBALL CLUB
  * com.wanztudio.footballclub.activities
- * or see link for more detail https://github.com/iwanz98/FootballClub
+ * or see link for more detail https://github.com/iwanz98/FootballApp
  */
  
 class MainActivity : AppCompatActivity() {
@@ -41,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                 recyclerView {
                     val orientation = LinearLayoutManager.VERTICAL
                     layoutManager = LinearLayoutManager(context, orientation, true)
-                    adapter= FootballClubAdapter(context, items){
+                    adapter= FootballAppAdapter(context, items){
                         startActivity<DetailActivity>("image" to it.image,
                                 "name" to it.name, "info" to it.info)
                     }
