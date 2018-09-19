@@ -1,4 +1,4 @@
-package com.wanztudio.footballclub.activities
+package com.wanztudio.gdk.footballclub.activities
 
 import android.graphics.Typeface
 import android.os.Bundle
@@ -7,8 +7,7 @@ import android.view.Gravity
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import com.wanztudio.footballclub.R
-import kotlinx.android.synthetic.main.list_item_football_club.*
+import com.wanztudio.gdk.footballclub.R
 import org.jetbrains.anko.*
 
 
@@ -18,7 +17,7 @@ import org.jetbrains.anko.*
  * You can contact me at : ismail.ridwan98@gmail.com
  * -------------------------------------------------
  * FOOTBALL CLUB
- * com.wanztudio.footballclub.activities
+ * com.wanztudio.gdk.footballclub.activities
  * or see link for more detail https://github.com/iwanz98/FootballApp
  */
 

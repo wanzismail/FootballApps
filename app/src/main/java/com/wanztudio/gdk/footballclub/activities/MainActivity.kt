@@ -1,14 +1,12 @@
-package com.wanztudio.footballclub.activities
+package com.wanztudio.gdk.footballclub.activities
 
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Toast
-import com.wanztudio.footballclub.R.array.*
-import com.wanztudio.footballclub.adapters.FootballAppAdapter
-import com.wanztudio.footballclub.models.ClubItem
-import kotlinx.android.synthetic.main.activity_main.*
+import com.wanztudio.gdk.footballclub.R.array.*
+import com.wanztudio.gdk.footballclub.adapters.FootballAppAdapter
+import com.wanztudio.gdk.footballclub.models.ClubItem
 import org.jetbrains.anko.*
 import org.jetbrains.anko.recyclerview.v7.recyclerView
 
@@ -18,7 +16,7 @@ import org.jetbrains.anko.recyclerview.v7.recyclerView
  * You can contact me at : ismail.ridwan98@gmail.com
  * -------------------------------------------------
  * FOOTBALL CLUB
- * com.wanztudio.footballclub.activities
+ * com.wanztudio.gdk.footballclub.activities
  * or see link for more detail https://github.com/iwanz98/FootballApp
  */
  

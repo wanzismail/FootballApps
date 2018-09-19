@@ -1,15 +1,14 @@
-package com.wanztudio.footballclub.adapters
+package com.wanztudio.gdk.footballclub.adapters
 
 import android.content.Context
-import android.graphics.Typeface
 import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import com.bumptech.glide.Glide
-import com.wanztudio.footballclub.R
-import com.wanztudio.footballclub.models.ClubItem
+import com.wanztudio.gdk.footballclub.R
+import com.wanztudio.gdk.footballclub.models.ClubItem
 import kotlinx.android.extensions.LayoutContainer
 import kotlinx.android.synthetic.main.list_item_football_club.*
 import org.jetbrains.anko.*
@@ -21,7 +20,7 @@ import org.jetbrains.anko.*
  * You can contact me at : ismail.ridwan98@gmail.com
  * -------------------------------------------------
  * FOOTBALL CLUB
- * com.wanztudio.footballclub.adapters
+ * com.wanztudio.gdk.footballclub.adapters
  * or see link for more detail https://github.com/iwanz98/FootballApp
  */
 

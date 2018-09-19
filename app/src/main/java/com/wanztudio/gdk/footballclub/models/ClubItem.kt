@@ -1,4 +1,4 @@
-package com.wanztudio.footballclub.models
+package com.wanztudio.gdk.footballclub.models
 
 
 /**
@@ -7,7 +7,7 @@ package com.wanztudio.footballclub.models
  * You can contact me at : ismail.ridwan98@gmail.com
  * -------------------------------------------------
  * FOOTBALL CLUB
- * com.wanztudio.footballclub.models
+ * com.wanztudio.gdk.footballclub.models
  * or see link for more detail https://github.com/iwanz98/FootballApp
  */
  
