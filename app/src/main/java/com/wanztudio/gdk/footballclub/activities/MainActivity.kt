@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//      setContentView(activity_main)
         initData()
 
         MainActivityUI(items).setContentView(this)
@@ -55,8 +54,6 @@ class MainActivity : AppCompatActivity() {
         items.clear()
         for (i in name.indices)
             items.add(ClubItem(image.getResourceId(i, 0),name[i], info[i]))
-
-        //Recycle the typed array
         image.recycle()
     }
 }

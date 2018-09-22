@@ -5,12 +5,14 @@ import android.support.v7.widget.RecyclerView
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.wanztudio.gdk.footballclub.R
+import com.wanztudio.gdk.footballclub.R.id.*
 import com.wanztudio.gdk.footballclub.models.ClubItem
 import kotlinx.android.extensions.LayoutContainer
-import kotlinx.android.synthetic.main.list_item_football_club.*
 import org.jetbrains.anko.*
 
 
@@ -26,9 +28,6 @@ import org.jetbrains.anko.*
 
 class FootballAppAdapter(private val context: Context, private val items: List<ClubItem>, private val listener: (ClubItem) -> Unit)
     : RecyclerView.Adapter<FootballAppAdapter.ClubViewHolder>() {
-
-//  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-//         ViewHolder(LayoutInflater.from(context).inflate(list_item_football_club, parent, false))
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClubViewHolder {
         return ClubViewHolder(ClubItemUI().createView(AnkoContext.create(parent.context, parent)))
@@ -48,10 +47,10 @@ class FootballAppAdapter(private val context: Context, private val items: List<C
                     lparams(width = matchParent, height = wrapContent)
                     orientation = LinearLayout.HORIZONTAL
                     imageView(R.drawable.img_acm) {
-                        id = R.id.image
+                        id = R.id.imageClub
                     }.lparams(width = dip(50), height = dip(50))
                     textView {
-                        id = R.id.name
+                        id = R.id.nameCLub
                         textSize = 14f
                     }.lparams(width = matchParent) {
                         margin = dip(10)
@@ -62,12 +61,13 @@ class FootballAppAdapter(private val context: Context, private val items: List<C
         }
     }
 
-    class ClubViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
-            LayoutContainer {
+    class ClubViewHolder(val containerView: View) : RecyclerView.ViewHolder(containerView) {
+        private val logo: ImageView = containerView.find(imageClub)
+        private val name: TextView = containerView.find(nameCLub)
 
         fun bindItem(items: ClubItem, listener: (ClubItem) -> Unit) {
             name.text = items.name
-            Glide.with(containerView).load(items.image).into(image)
+            Glide.with(containerView).load(items.image).into(logo)
             containerView.setOnClickListener { listener(items) }
         }
     }
