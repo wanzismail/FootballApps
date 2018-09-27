@@ -1,36 +1,33 @@
 <resources>
-    <string name="app_name">Football Club</string>
+    <!-- Font -->
+    <string name="typeface_regular">fonts/roboto/roboto_regular.ttf</string>
+    <string name="typeface_medium">fonts/roboto/roboto_medium.ttf</string>
+    <string name="typeface_italic">fonts/roboto/roboto_italic.ttf</string>
+    <string name="typeface_bold">fonts/roboto/roboto_bold.ttf</string>
 
-    <string-array name="club_name">
-        <item>Barcelona FC</item>
-        <item>Real Madrid FC</item>
-        <item>Bayern Munchen FC</item>
-        <item>Manchester City FC</item>
-        <item>Manchester United FC</item>
-        <item>Chelsea FC</item>
-        <item>AC Milan FC</item>
-        <item>Arsenal FC</item>
-    </string-array>
+    <string name="typeface_helvetica_bold">fonts/helvetica/helvetica_bold.ttf</string>
+    <string name="typeface_proxima_reguler">fonts/proxima/proxima_nova_alt_reguler.ttf</string>
+    <string name="typeface_proxima_semibold">fonts/proxima/proxima_nova_semibold.ttf</string>
 
-    <array name="club_image">
-        <item>@drawable/img_barca</item>
-        <item>@drawable/img_madrid</item>
-        <item>@drawable/img_bayern</item>
-        <item>@drawable/img_city</item>
-        <item>@drawable/img_mu</item>
-        <item>@drawable/img_chelsea</item>
-        <item>@drawable/img_acm</item>
-        <item>@drawable/img_arsenal</item>
-    </array>
+    <!-- App message -->
+    <string name="api_retry_error">Please try again</string>
+    <string name="api_default_error">Something went wrong!</string>
+    <string name="some_error">Some Errors Occurred!</string>
+    <string name="connection_error">There was an error in the network</string>
+    <string name="message_no_network_connection">No network connection</string>
+    <string name="message_please_wait">Please wait..</string>
+    <string name="message_loading">Loading..</string>
 
-    <string-array name="club_info">
-        <item>Futbol Club Barcelona, known simply as Barcelona and colloquially as Barça, is a professional football club based in Barcelona, Catalonia, Spain.</item>
-        <item>Real Madrid Club de Fútbol, commonly known as Real Madrid, is a professional football club based in Madrid, Spain. Founded on 6 March 1902 as the Madrid Football Club, the club has traditionally worn a white home kit since inception.</item>
-        <item>Fußball-Club Bayern München e.V., commonly known as FC Bayern München, FCB, Bayern Munich, or FC Bayern, is a German sports club based in Munich, Bavaria.</item>
-        <item>Manchester City Football Club, also known simply as City or the Cityzens, is a football club based in east Manchester, England. Founded in 1880 as St. Mark's, it became Ardwick Association Football Club in 1887 and Manchester City in 1894.</item>
-        <item>Manchester United Football Club, commonly known as Man. United or simply United, is a professional football club based in Old Trafford, Greater Manchester, England, that competes in the Premier League, the top flight of English football.</item>
-        <item>Chelsea Football Club is a professional football club in London, England, that competes in the Premier League. Founded in 1905, the club's home ground since then has been Stamford Bridge.</item>
-        <item>Associazione Calcio Milan, commonly referred to as A.C. Milan or simply Milan, is a professional football club in Milan, Italy, founded in 1899.</item>
-        <item>Arsenal Football Club is a professional football club based in Islington, London, England, that plays in the Premier League, the top flight of English football.</item>
-    </string-array>
+    <string name="empty_email_error_message">Email cannot be blank</string>
+    <string name="invalid_email_error_message">Please Enter a valid email address</string>
+    <string name="empty_password_error_message">Password cannot be empty</string>
+    <string name="login_failure">Login failed</string>
+    <string name="feedback_submitted_successfully">Feedback submitted successfully</string>
+
+    <!-- Message location -->
+    <string name="provider_settings_message">Your GPS seems to be disabled, do you want to enable it?</string>
+    <string name="provider_settings_yes">Yes</string>
+    <string name="provider_settings_no">No</string>
+
+    <string name="map_api_key">AIzaSyD94teouMB5SskVU4BliOIJiSvJ14Cwqkg</string>
 </resources>

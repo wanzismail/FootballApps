@@ -1,6 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+  <color name="colorPrimary">@color/white</color>
+  <color name="colorPrimaryDark">@color/white</color>
+  <color name="colorAccent">#3CD0C7</color>
+  <color name="colorAccentDark">#32aca5</color>
+  <color name="colorAccentQuarter">#84f4ae</color>
+  <color name="colorAccentHalf">#68de95</color>
+
+  <color name="colorControlHighlight">#59e4db</color>​
+  <color name="colorControlNormal">#209EB9</color>
+  <color name="colorSwitchThumbNormal">#EAECED</color>
+  <color name="colorControlActivatedHalf">#8bedb1</color>
+  <color name="colorNavigationBar">#000000</color>
+  <color name="colorWindowBackground">#F6F6F6</color>
+
+  <color name="cacheColorHint">#1f000000</color>
+  <color name="colorForeground">#c0000000</color>
+
+  <color name="color_gradient1">@color/colorAccent</color>
+  <color name="color_gradient2">#7AF1A8</color>
+
+  <color name="red_warning">#D83326</color>
+  <color name="orange">#FFA500</color>
+
+  <color name="colorPrimaryText">#393939</color>
+  <color name="colorPrimaryTextLight">#FFFFFF</color>
+  <color name="colorPrimaryTextHint">#959595</color>
+  <color name="colorSecondaryText">#5b5b5b</color>
+
+  <color name="black">#000000</color>
+  <color name="white">#ffffff</color>
+
+  <color name="light_gray">#dbdbdb</color>
+  <color name="gray">#7e7e7e</color>
+  <color name="semi_gray">#979797</color>
+  <color name="dark_gray">#696969</color>
+
+  <!-- Card colors -->
+  <color name="card_background">#ffffff</color>
+  <color name="card_shadow_1">#d4d4d4</color>
+  <color name="card_shadow_2">#dddddd</color>
+  <color name="card_detailing">#eee</color>
 </resources>

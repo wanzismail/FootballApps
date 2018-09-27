@@ -1,47 +1,176 @@
 apply plugin: 'com.android.application'
+
 apply plugin: 'kotlin-android'
+
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
+apply plugin: 'io.fabric'
+
 android {
-    compileSdkVersion 27
+    compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
-        applicationId "com.wanztudio.gdk.footballclub"
-        minSdkVersion 16
-        targetSdkVersion 27
+        applicationId "com.wanztudio.gdk.matchschedule"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+
+        kapt {
+            arguments {
+                arg("room.schemaLocation", "$projectDir/schemas".toString())
+            }
+        }
+    }
+    signingConfigs {
+        release
+    }
+
+    flavorDimensions "tier"
+    productFlavors {
+        dev {
+            buildConfigField("String", "BASE_URL", "\"https://wanztudio.com/api\"")
+            buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
+            resValue "string", "app_name", "Wanztudio Dev"
+        }
+        production {
+            buildConfigField("String", "BASE_URL", "\"https://wanztudio.com/api\"")
+            buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
+            resValue "string", "app_name", "Wanztudio"
+        }
     }
     buildTypes {
-        release {
+        debug {
+            applicationIdSuffix '.dev'
+            versionNameSuffix '-dev'
+            debuggable true
+            multiDexEnabled true
             minifyEnabled false
+            shrinkResources false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        release {
+            multiDexEnabled false
+            minifyEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 }
 
-androidExtensions {
-    experimental = true
+configurations.all {
+    exclude group: 'com.android.support', module: 'support-v13'
+    resolutionStrategy.force "com.android.support:support-annotations:$supportLibraryVersion"
 }
-
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    // SUPPORT LIBRARY
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support:recyclerview-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    // ANKO
-    implementation "org.jetbrains.anko:anko-commons:$anko_version"
-    implementation "org.jetbrains.anko:anko-sdk25:$anko_version"
-    implementation "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
-    implementation "org.jetbrains.anko:anko-recyclerview-v7:$anko_version"
-    implementation "org.jetbrains.anko:anko-design:$anko_version"
-    // IMAGE LOADER
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
-    // UNIT TESTS
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
+
+    // Android support libraries
+    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:recyclerview-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintVersion"
+
+    // Network
+    implementation "com.amitshekhar.android:rx2-android-networking:$rootProject.rx2FastAndroidNetworking"
+
+    // Database
+    implementation "android.arch.persistence.room:rxjava2:$rootProject.roomDatabaseVersion"
+    kapt "android.arch.persistence.room:compiler:$rootProject.roomDatabaseVersion"
+
+    // Font
+    implementation "io.github.inflationx:calligraphy3:$rootProject.calligraphyVersion"
+    implementation "io.github.inflationx:viewpump:$rootProject.viewpumpVersion"
+
+    // Better spinner
+    implementation("com.weiwangcn.betterspinner:library-material:$rootProject.spinnerVersion") {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+    }
+
+    // Circle imageview
+    implementation "de.hdodenhof:circleimageview:$rootProject.circleImageVersion"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+
+    // Dialog
+    implementation "com.afollestad.material-dialogs:core:$rootProject.dialogVersion"
+
+    // Preferences
+    implementation "com.orhanobut:hawk:$rootProject.hawkVersion"
+
+    // Permission utils
+    implementation "rebus:permission-utils:$rootProject.permissionVersion"
+
+    // Parser
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+
+    // Debug database
+    debugImplementation "com.amitshekhar.android:debug-db:$rootProject.debugDBVersion"
+
+    // Dependency injection
+    implementation "com.google.dagger:dagger:$rootProject.dagger2Version"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger2Version"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.dagger2Version"
+
+    // Reactive
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+
+    // Code generator for view
+    implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
+    kapt "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+
+    // Logger
+    implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
+
+    // Dependencies for local unit tests
+    testImplementation "junit:junit:$rootProject.ext.junitVersion"
+    testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    kaptTest "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+
+    // UI Testing
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.espressoVersion"
+    androidTestImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    kaptAndroidTest "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+
+    // Android Kotlin Extension
+    implementation "androidx.core:core-ktx:$rootProject.androidKTXVersion"
+
+    // Crashlytics
+    implementation("com.crashlytics.sdk.android:crashlytics:$rootProject.crashlyticsVersion") {
+        transitive = true
+    }
+
+    // Range seekbar
+    implementation "com.crystal:crystalrangeseekbar:$rootProject.seekbarVersion"
+    // Smart location
+    implementation ("io.nlopez.smartlocation:library:$rootProject.smartLocationVersion"){
+        exclude group: 'com.google.android.gms', module: 'play-services-location'
+    }
+    // Slider
+    implementation "com.ss.bannerslider:bannerslider:$rootProject.bannerVersion"
+    // Google plays service
+    implementation "com.google.android.gms:play-services-auth:$rootProject.googleVersion"
+    implementation "com.google.android.gms:play-services-location:$rootProject.googleVersion"
+    implementation "com.google.android.gms:play-services-maps:$rootProject.googleVersion"
 }
+
+kapt {
+    generateStubs = true
+}
+
+// ADD THIS AT THE BOTTOM
+//apply plugin: 'com.google.gms.google-services'
