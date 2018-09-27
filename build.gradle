@@ -57,7 +57,6 @@ ext {
     kotlinVersion = kotlinVersion
     supportLibraryVersion = '27.1.0'
     crashlyticsVersion ='2.9.5'
-    gsonVersion = '2.8.0'
     calligraphyVersion = '3.0.0'
     viewpumpVersion = '1.0.0'
     rx2FastAndroidNetworking = '1.0.2'
