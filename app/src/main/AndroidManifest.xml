@@ -11,7 +11,7 @@
     android:supportsRtl="true"
     android:theme="@style/AppTheme">
 
-    <activity android:name="com.wanztudio.gdk.matchschedule.ui.splash.view.SplashMVPActivity">
+    <activity android:name="com.wanztudio.gdk.matchschedule.ui.main.view.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN"/>
 
@@ -19,20 +19,7 @@
       </intent-filter>
     </activity>
 
-    <activity android:name="com.wanztudio.gdk.matchschedule.ui.login.view.LoginActivity"/>
-    <activity android:name=".ui.register.view.RegisterActivity"/>
-    <activity android:name="com.wanztudio.gdk.matchschedule.ui.main.view.MainActivity"/>
-
-    <meta-data
-        android:name="com.google.android.gms.version"
-        android:value="@integer/google_play_services_version" />
-
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="@string/map_api_key" />
-    <meta-data
-        android:name="io.fabric.ApiKey"
-        android:value="03d242cc2b91c4b81059f8f2327deabfda573e71"/>
+    <activity android:name="com.wanztudio.gdk.matchschedule.ui.detail.view.DetailActivity"/>
   </application>
 
 </manifest>

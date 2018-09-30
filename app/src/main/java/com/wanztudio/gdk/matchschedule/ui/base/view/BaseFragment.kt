@@ -1,22 +1,24 @@
 package com.wanztudio.gdk.matchschedule.ui.base.view
 
-import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
-import com.wanztudio.gdk.matchschedule.util.CommonUtil
 import dagger.android.support.AndroidSupportInjection
 
 /**
- * Created by Ridwan Ismail on 23/September/2018
- * You can contact me at : iwanz@pm.me
+ * For LEARNING
+ * Created by Ridwan Ismail on 27 September 2018
+ * You can contact me at : ismail.ridwan98@gmail.com
+ * -------------------------------------------------
+ * FOOTBALL MATCH CLUB
+ * com.wanztudio.gdk.matchschedule.ui.base.view
+ * or see link for more detail https://github.com/iwanz98/FootballApp
  */
 
 abstract class BaseFragment : Fragment(), MVPView {
 
     private var parentActivity: BaseActivity? = null
-    private var progressDialog: ProgressDialog? = null
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
@@ -38,17 +40,6 @@ abstract class BaseFragment : Fragment(), MVPView {
         setUp()
     }
 
-    override fun hideProgress() {
-        if (progressDialog != null && progressDialog?.isShowing!!) {
-            progressDialog?.cancel()
-        }
-    }
-
-    override fun showProgress() {
-        hideProgress()
-        progressDialog = CommonUtil.showLoadingDialog(this.context)
-    }
-
     fun getBaseActivity() = parentActivity
 
     private fun performDependencyInjection() = AndroidSupportInjection.inject(this)
@@ -56,6 +47,8 @@ abstract class BaseFragment : Fragment(), MVPView {
     interface CallBack {
         fun onFragmentAttached()
         fun onFragmentDetached(tag: String)
+        fun showLoading()
+        fun hideLoading()
     }
 
     abstract fun setUp()

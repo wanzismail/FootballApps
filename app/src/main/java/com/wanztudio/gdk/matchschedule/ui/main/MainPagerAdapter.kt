@@ -3,12 +3,17 @@ package com.wanztudio.gdk.matchschedule.ui.main
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.wanztudio.gdk.matchschedule.ui.main.first.view.FirstFragment
-import com.wanztudio.gdk.matchschedule.ui.main.second.view.SecondFragment
+import com.wanztudio.gdk.matchschedule.ui.main.prev.view.PrevFragment
+import com.wanztudio.gdk.matchschedule.ui.main.next.view.NextFragment
 
 /**
- * Created by Ridwan Ismail on 23 September 2018
- * You can contact me at : iwanz@pm.me
+ * For LEARNING
+ * Created by Ridwan Ismail on 27 September 2018
+ * You can contact me at : ismail.ridwan98@gmail.com
+ * -------------------------------------------------
+ * FOOTBALL MATCH CLUB
+ * com.wanztudio.gdk.matchschedule.ui.main
+ * or see link for more detail https://github.com/iwanz98/FootballApp
  */
 
 class MainPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAdapter(fragmentManager) {
@@ -21,8 +26,8 @@ class MainPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAda
 
     override fun getItem(position: Int): Fragment? {
         return when (position) {
-            0 -> FirstFragment.newInstance()
-            1 -> SecondFragment.newInstance()
+            0 -> PrevFragment.newInstance()
+            1 -> NextFragment.newInstance()
             else -> null
         }
     }

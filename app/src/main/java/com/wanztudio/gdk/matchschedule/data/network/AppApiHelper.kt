@@ -5,23 +5,27 @@ import io.reactivex.Observable
 import javax.inject.Inject
 
 /**
- * Created by Ridwan Ismail on 23/September/2018
- * You can contact me at : iwanz@pm.me
+ * For LEARNING
+ * Created by Ridwan Ismail on 27 September 2018
+ * You can contact me at : ismail.ridwan98@gmail.com
+ * -------------------------------------------------
+ * FOOTBALL MATCH CLUB
+ * com.wanztudio.gdk.matchschedule.data.network
+ * or see link for more detail https://github.com/iwanz98/FootballApp
  */
 
-class AppApiHelper @Inject constructor(private val apiHeader: ApiHeader) : ApiHelper {
+class AppApiHelper @Inject internal constructor() : ApiHelper {
 
-    override fun performServerLogin(request: LoginRequest.ServerLoginRequest): Observable<LoginResponse> =
-            Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_SERVER_LOGIN)
-                    .addHeaders(apiHeader.publicApiHeader)
-                    .addBodyParameter(request)
+    override fun getPrevSchedule(idLeague: Int): Observable<ScheduleResponse> =
+            Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_PREV_EVENT)
+                    .addQueryParameter("id", idLeague.toString())
                     .build()
-                    .getObjectObservable(LoginResponse::class.java)
+                    .getObjectObservable(ScheduleResponse::class.java)
 
-    override fun performLogoutApiCall(): Observable<LogoutResponse> =
-            Rx2AndroidNetworking.post(ApiEndPoint.ENDPOINT_LOGOUT)
-                    .addHeaders(apiHeader.protectedApiHeader)
+    override fun getNextSchedule(idLeague: Int): Observable<ScheduleResponse> =
+            Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_NEXT_EVENT)
+                    .addQueryParameter("id", idLeague.toString())
                     .build()
-                    .getObjectObservable(LogoutResponse::class.java)
+                    .getObjectObservable(ScheduleResponse::class.java)
 
 }

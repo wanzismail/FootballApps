@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_prev"
+        android:icon="@drawable/ic_thropy"
+        android:title="@string/menu_prev_match" />
+
+    <item
+        android:id="@+id/action_next"
+        android:icon="@drawable/ic_schedule"
+        android:title="@string/menu_next_match" />
+</menu>
