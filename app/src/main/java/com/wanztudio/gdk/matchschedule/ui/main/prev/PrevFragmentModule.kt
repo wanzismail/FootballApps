@@ -1,6 +1,9 @@
 package com.wanztudio.gdk.matchschedule.ui.main.prev
 
+import android.content.Context
 import android.support.v7.widget.LinearLayoutManager
+import com.wanztudio.gdk.matchschedule.data.network.Event
+import com.wanztudio.gdk.matchschedule.di.ApplicationContext
 import com.wanztudio.gdk.matchschedule.ui.main.ScheduleAdapter
 import com.wanztudio.gdk.matchschedule.ui.main.prev.interactor.PrevInteractor
 import com.wanztudio.gdk.matchschedule.ui.main.prev.interactor.PrevMVPInteractor
@@ -31,10 +34,10 @@ class PrevFragmentModule {
     internal fun providePrevPresenter(presenter: PrevPresenter<PrevMVPView, PrevMVPInteractor>)
             : PrevMVPPresenter<PrevMVPView, PrevMVPInteractor> = presenter
 
-//    @Provides
-//    internal fun provideScheduleAdapter(): ScheduleAdapter = ScheduleAdapter()
-//
-//    @Provides
-//    internal fun provideLinearLayoutManager(fragment: PrevFragment): LinearLayoutManager = LinearLayoutManager(fragment.activity)
+    @Provides
+    internal fun provideScheduleAdapter(@ApplicationContext context: Context): ScheduleAdapter = ScheduleAdapter(context, ArrayList())
+
+    @Provides
+    internal fun provideLinearLayoutManager(fragment: PrevFragment): LinearLayoutManager = LinearLayoutManager(fragment.activity)
 
 }

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    app:cardBackgroundColor="@color/white"
     android:layout_height="wrap_content"
     android:layout_marginLeft="@dimen/margin_medium"
     android:layout_marginTop="@dimen/margin_small"
@@ -23,7 +24,7 @@
             fontPath="@string/typeface_bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Kamis, 15 Januari 1998"
+            android:text="@string/sample_date"
             android:textColor="@color/colorPrimary"
             android:textSize="@dimen/text_size_small"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"
-            android:text="VS"
+            android:text="@string/label_versus"
             fontPath="@string/typeface_bold"
             android:textColor="@color/colorPrimaryText"
             android:textSize="@dimen/text_size_normal"
@@ -57,10 +58,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="3"
+                android:text="@string/sample_home_score"
                 fontPath="@string/typeface_medium"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/text_size_medium" />
+                android:textSize="@dimen/text_size_normal"/>
 
             <TextView
                 android:id="@+id/home_team_name"
@@ -68,10 +69,10 @@
                 android:layout_height="wrap_content"
                 android:layout_toLeftOf="@id/home_score"
                 android:gravity="center"
-                android:text="Persib"
+                android:text="@string/sample_home_team"
                 fontPath="@string/typeface_medium"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/text_size_big" />
+                android:textSize="@dimen/text_size_normal" />
         </RelativeLayout>
 
 
@@ -89,10 +90,10 @@
                 android:id="@+id/away_score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2"
+                android:text="@string/sample_away_score"
                 fontPath="@string/typeface_medium"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/text_size_medium" />
+                android:textSize="@dimen/text_size_normal" />
 
             <TextView
                 android:id="@+id/away_team_name"
@@ -100,10 +101,10 @@
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/away_score"
                 android:gravity="center"
-                android:text="Persija"
+                android:text="@string/sample_away_team"
                 fontPath="@string/typeface_medium"
                 android:textColor="@color/colorPrimaryText"
-                android:textSize="@dimen/text_size_big" />
+                android:textSize="@dimen/text_size_normal"/>
         </RelativeLayout>
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>

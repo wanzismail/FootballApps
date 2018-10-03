@@ -94,7 +94,4 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
         false
     }
 
-    fun openDetailActivity() {
-        startActivity<DetailActivity>()
-    }
 }

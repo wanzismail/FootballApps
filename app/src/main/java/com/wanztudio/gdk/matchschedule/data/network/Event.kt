@@ -1,6 +1,7 @@
 package com.wanztudio.gdk.matchschedule.data.network
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 /**
  * For LEARNING
@@ -15,7 +16,7 @@ import com.google.gson.annotations.SerializedName
 data class Event(
 
 	@field:SerializedName("intHomeShots")
-	val intHomeShots: Any? = null,
+	val intHomeShots: String? = null,
 
 	@field:SerializedName("strSport")
 	val strSport: String? = null,
@@ -27,7 +28,7 @@ data class Event(
 	val strAwayLineupSubstitutes: String? = null,
 
 	@field:SerializedName("idLeague")
-	val idLeague: String? = null,
+	val idLeague: String,
 
 	@field:SerializedName("idSoccerXML")
 	val idSoccerXML: String? = null,
@@ -48,22 +49,22 @@ data class Event(
 	val strAwayLineupMidfield: String? = null,
 
 	@field:SerializedName("idEvent")
-	val idEvent: String? = null,
+	val idEvent: String,
 
 	@field:SerializedName("intRound")
-	val intRound: String? = null,
+	val intRound: String,
 
 	@field:SerializedName("strHomeYellowCards")
 	val strHomeYellowCards: String? = null,
 
 	@field:SerializedName("idHomeTeam")
-	val idHomeTeam: String? = null,
+	val idHomeTeam: String,
 
 	@field:SerializedName("intHomeScore")
 	val intHomeScore: String? = null,
 
 	@field:SerializedName("dateEvent")
-	val dateEvent: String? = null,
+	val dateEvent: String,
 
 	@field:SerializedName("strCountry")
 	val strCountry: Any? = null,
@@ -84,7 +85,7 @@ data class Event(
 	val strMap: Any? = null,
 
 	@field:SerializedName("idAwayTeam")
-	val idAwayTeam: String? = null,
+	val idAwayTeam: String,
 
 	@field:SerializedName("strAwayRedCards")
 	val strAwayRedCards: String? = null,
@@ -105,7 +106,7 @@ data class Event(
 	val strCircuit: Any? = null,
 
 	@field:SerializedName("intAwayShots")
-	val intAwayShots: Any? = null,
+	val intAwayShots: String? = null,
 
 	@field:SerializedName("strFilename")
 	val strFilename: String? = null,
@@ -123,7 +124,7 @@ data class Event(
 	val strLocked: String? = null,
 
 	@field:SerializedName("strSeason")
-	val strSeason: String? = null,
+	val strSeason: String,
 
 	@field:SerializedName("intSpectators")
 	val intSpectators: Any? = null,
@@ -166,4 +167,4 @@ data class Event(
 
 	@field:SerializedName("strPoster")
 	val strPoster: Any? = null
-)
+) : Serializable

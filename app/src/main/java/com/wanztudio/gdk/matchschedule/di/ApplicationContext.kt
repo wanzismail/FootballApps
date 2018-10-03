@@ -1,5 +1,6 @@
-package com.wanztudio.gdk.matchschedule.util
+package com.wanztudio.gdk.matchschedule.di
 
+import javax.inject.Qualifier
 
 /**
  * For LEARNING
@@ -11,8 +12,5 @@ package com.wanztudio.gdk.matchschedule.util
  * or see link for more detail https://github.com/iwanz98/FootballApp
  */
 
-object Constants {
-
-    internal val ID_LEAGUE = 4397
-    internal val EXTRA_EVENT = "extra_event"
-}
+@Qualifier
+@Retention annotation class ApplicationContext

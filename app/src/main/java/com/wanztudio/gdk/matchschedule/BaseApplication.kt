@@ -2,6 +2,8 @@ package com.wanztudio.gdk.matchschedule
 
 import android.app.Activity
 import android.app.Application
+import com.androidnetworking.AndroidNetworking
+import com.androidnetworking.interceptors.HttpLoggingInterceptor
 import com.wanztudio.gdk.matchschedule.di.component.DaggerAppComponent
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -31,6 +33,8 @@ class BaseApplication : Application(), HasActivityInjector {
                 .application(this)
                 .build()
                 .inject(this)
+
+        AndroidNetworking.enableLogging(HttpLoggingInterceptor.Level.BODY)
     }
 
 }

@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import com.wanztudio.gdk.matchschedule.data.network.ApiHelper
 import com.wanztudio.gdk.matchschedule.data.network.AppApiHelper
+import com.wanztudio.gdk.matchschedule.di.ApplicationContext
 import com.wanztudio.gdk.matchschedule.util.SchedulerProvider
 import dagger.Module
 import dagger.Provides
@@ -25,6 +26,7 @@ class AppModule {
 
     @Provides
     @Singleton
+    @ApplicationContext
     internal fun provideContext(application: Application): Context = application
 
     @Provides

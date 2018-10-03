@@ -47,8 +47,6 @@ abstract class BaseFragment : Fragment(), MVPView {
     interface CallBack {
         fun onFragmentAttached()
         fun onFragmentDetached(tag: String)
-        fun showLoading()
-        fun hideLoading()
     }
 
     abstract fun setUp()

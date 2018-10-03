@@ -1,5 +1,6 @@
 package com.wanztudio.gdk.matchschedule.di.builder
 
+import com.wanztudio.gdk.matchschedule.ui.detail.DetailActivityModule
 import com.wanztudio.gdk.matchschedule.ui.detail.view.DetailActivity
 import com.wanztudio.gdk.matchschedule.ui.main.next.NextFragmentProvider
 import com.wanztudio.gdk.matchschedule.ui.main.prev.PrevFragmentProvider
@@ -22,5 +23,8 @@ abstract class ActivityBuilder {
 
     @ContributesAndroidInjector(modules = [(PrevFragmentProvider::class), (NextFragmentProvider::class)])
     abstract fun bindMainActivity(): MainActivity
+
+    @ContributesAndroidInjector(modules = [(DetailActivityModule::class)])
+    abstract fun bindDetailActivity(): DetailActivity
 
 }

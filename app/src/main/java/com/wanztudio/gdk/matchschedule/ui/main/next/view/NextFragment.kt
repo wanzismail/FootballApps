@@ -1,17 +1,24 @@
 package com.wanztudio.gdk.matchschedule.ui.main.next.view
 
 import android.os.Bundle
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.wanztudio.gdk.matchschedule.R
 import com.wanztudio.gdk.matchschedule.data.network.Event
 import com.wanztudio.gdk.matchschedule.ui.base.view.BaseFragment
 import com.wanztudio.gdk.matchschedule.ui.main.ScheduleAdapter
+import com.wanztudio.gdk.matchschedule.ui.main.next.interactor.DetailMVPInteractor
 import com.wanztudio.gdk.matchschedule.ui.main.next.interactor.NextMVPInteractor
+import com.wanztudio.gdk.matchschedule.ui.main.next.presenter.DetailMVPPresenter
 import com.wanztudio.gdk.matchschedule.ui.main.next.presenter.NextMVPPresenter
 import com.wanztudio.gdk.matchschedule.util.Constants
+import com.wanztudio.gdk.matchschedule.util.NetworkUtils
+import kotlinx.android.synthetic.main.fragment_schedule.*
 import javax.inject.Inject
 
 
@@ -52,13 +59,44 @@ class NextFragment : BaseFragment(), NextMVPView {
     }
 
     override fun setUp() {
-        mPresenter.getNextSchedule(Constants.ID_LEAGUE)
+        layoutManager.orientation = LinearLayoutManager.VERTICAL
+        schedule_recycler.layoutManager = layoutManager
+        schedule_recycler.itemAnimator = DefaultItemAnimator()
+        schedule_recycler.setHasFixedSize(true)
+        schedule_recycler.adapter = scheduleAdapter
+
+        swipe_refresh.setColorSchemeColors(ContextCompat.getColor(requireContext(),R.color.colorPrimary))
+        swipe_refresh.setOnRefreshListener {
+            getListEvent()
+        }
+
+        getListEvent()
     }
 
-    override fun showEvents(listEvent: List<Event?>?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    fun getListEvent() {
+        if (NetworkUtils.isNetworkAvailable(requireContext())) {
+            mPresenter.getNextSchedule(Constants.ID_LEAGUE)
+            showLoading()
+        } else {
+            Toast.makeText(context, getString(R.string.message_no_network), Toast.LENGTH_SHORT)
+        }
     }
 
+    override fun showEvents(listEvent: List<Event>) {
+        hideLoading()
+        listEvent?.let {
+            empty_data.visibility = View.GONE
+            scheduleAdapter.addEventsToList(listEvent)
+        }
+    }
+
+    override fun showLoading() {
+        swipe_refresh.isRefreshing = true
+    }
+
+    override fun hideLoading() {
+        swipe_refresh.isRefreshing = false
+    }
     override fun onDestroyView() {
         mPresenter.onDetach()
         super.onDestroyView()

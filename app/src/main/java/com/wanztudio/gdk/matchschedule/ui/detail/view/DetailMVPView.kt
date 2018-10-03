@@ -1,5 +1,7 @@
 package com.wanztudio.framework.mvp.ui.login.view
 
+import com.wanztudio.gdk.matchschedule.data.network.Event
+import com.wanztudio.gdk.matchschedule.data.network.Team
 import com.wanztudio.gdk.matchschedule.ui.base.view.MVPView
 
 /**
@@ -12,4 +14,11 @@ import com.wanztudio.gdk.matchschedule.ui.base.view.MVPView
  * or see link for more detail https://github.com/iwanz98/FootballApp
  */
 
-interface DetailMVPView : MVPView
+interface DetailMVPView : MVPView{
+
+    fun showLoading()
+    fun hideLoading()
+    fun showHomeTeam(team :Team)
+    fun showAwayTeam(team: Team)
+    fun showEvent(event: Event)
+}

@@ -17,7 +17,6 @@ import com.wanztudio.gdk.matchschedule.util.GlideApp
 internal fun ImageView.loadImage(url: String) {
     GlideApp.with(this.context)
             .load(url)
-            .encodeFormat(Bitmap.CompressFormat.JPEG)
             .centerCrop()
             .into(this)
 }

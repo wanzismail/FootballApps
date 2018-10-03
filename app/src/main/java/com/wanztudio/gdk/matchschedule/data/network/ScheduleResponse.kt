@@ -15,6 +15,6 @@ import com.google.gson.annotations.SerializedName
 data class ScheduleResponse(
 
 	@field:SerializedName("events")
-	val events: List<Event?>? = null
+	val events: List<Event>
 )
 

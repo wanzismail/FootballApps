@@ -1,8 +1,8 @@
 package com.wanztudio.gdk.matchschedule.ui.main.next.presenter
 
+import com.wanztudio.framework.mvp.ui.login.view.DetailMVPView
 import com.wanztudio.gdk.matchschedule.ui.base.presenter.MVPPresenter
 import com.wanztudio.gdk.matchschedule.ui.main.next.interactor.DetailMVPInteractor
-import com.wanztudio.gdk.matchschedule.ui.main.next.interactor.NextMVPInteractor
 import com.wanztudio.gdk.matchschedule.ui.main.next.view.NextMVPView
 
 /**
@@ -15,7 +15,9 @@ import com.wanztudio.gdk.matchschedule.ui.main.next.view.NextMVPView
  * or see link for more detail https://github.com/iwanz98/FootballApp
  */
 
-interface NextMVPPresenter<V : NextMVPView, I : NextMVPInteractor> : MVPPresenter<V, I> {
+interface DetailMVPPresenter<V : DetailMVPView, I : DetailMVPInteractor> : MVPPresenter<V, I> {
 
-    fun getNextSchedule(idLeague : Int)
+    fun getTeamHomeDetailApiCall(idTeam : String)
+    fun getTeamAwayDetailApiCall(idTeam : String)
+    fun getDetailEventApiCall(idLeague : String, round : String, season : String, idEvent : String)
 }

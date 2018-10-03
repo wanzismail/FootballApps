@@ -15,5 +15,7 @@ import com.wanztudio.gdk.matchschedule.ui.base.view.MVPView
 
 interface PrevMVPView : MVPView {
 
-    fun showEvents(listEvent: List<Event?>?)
+    fun showLoading()
+    fun hideLoading()
+    fun showEvents(listEvent: List<Event>)
 }

@@ -6,5 +6,21 @@
     <string name="typeface_bold">fonts/roboto/roboto_bold.ttf</string>
     <string name="menu_prev_match">Prev Match</string>
     <string name="menu_next_match">Next Match</string>
+    <string name="sample_date">Kamis, 15 Januari 1998</string>
+    <string name="label_versus">VS</string>
+    <string name="sample_home_score">3</string>
+    <string name="sample_home_team">Persib</string>
+    <string name="sample_away_score">2</string>
+    <string name="sample_away_team">Persija</string>
+    <string name="message_no_network">No internet connection</string>
+    <string name="title_match_detail">Match Detail</string>
+    <string name="label_goals">Goals</string>
+    <string name="empty_data">Sorry, data not available.</string>
+    <string name="label_shots">Shots</string>
+    <string name="label_substitutes">Substitutes</string>
+    <string name="label_forward">Forward</string>
+    <string name="label_midfield">Midfield</string>
+    <string name="label_defense">Defense</string>
+    <string name="label_goal_keeper">Goal Keeper</string>
 
 </resources>

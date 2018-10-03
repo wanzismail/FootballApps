@@ -26,7 +26,7 @@ class PrevPresenter<V : PrevMVPView, I : PrevMVPInteractor> @Inject constructor(
                     .compose(schedulerProvider.ioToMainObservableScheduler())
                     .subscribe({ response ->
                         getView()?.showEvents(response.events)
-                    }, { err -> println(err) }))
+                    }, { err -> println("Request failed.") }))
         }
     }
 

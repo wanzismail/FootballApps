@@ -16,5 +16,7 @@ object ApiEndPoint {
 
     val ENDPOINT_PREV_EVENT = BuildConfig.BASE_URL + "/eventspastleague.php"
     val ENDPOINT_NEXT_EVENT = BuildConfig.BASE_URL + "/eventsnextleague.php"
+    val ENDPOINT_ROUND_EVENT = BuildConfig.BASE_URL + "/eventsround.php"
+    val ENDPOINT_TEAM_DETAIL = BuildConfig.BASE_URL + "/lookupteam.php"
 
 }
