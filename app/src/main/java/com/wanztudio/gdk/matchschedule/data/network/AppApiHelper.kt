@@ -28,11 +28,9 @@ class AppApiHelper @Inject internal constructor() : ApiHelper {
                     .build()
                     .getObjectObservable(ScheduleResponse::class.java)
 
-    override fun getEventsRound(idLeague: String, round : String, season : String): Observable<ScheduleResponse> =
-            Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_ROUND_EVENT)
+    override fun getDetailEvent(idLeague: String): Observable<ScheduleResponse> =
+            Rx2AndroidNetworking.get(ApiEndPoint.ENDPOINT_DETAIL_EVENT)
                     .addQueryParameter("id", idLeague)
-                    .addQueryParameter("r", round)
-                    .addQueryParameter("s", season)
                     .build()
                     .getObjectObservable(ScheduleResponse::class.java)
 

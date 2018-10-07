@@ -17,8 +17,8 @@ import javax.inject.Inject
 
 class DetailInteractor @Inject internal constructor(apiHelper: ApiHelper) : BaseInteractor(apiHelper), DetailMVPInteractor {
 
-    override fun getDetailEventApiCall(idLeague : String, round : String, season : String) =
-            apiHelper.getEventsRound(idLeague, round, season)
+    override fun getDetailEventApiCall(idLeague : String) =
+            apiHelper.getDetailEvent(idLeague)
 
     override fun getDetailTeamApiCall(idTeam: String ) =
             apiHelper.getTeamDetail(idTeam)

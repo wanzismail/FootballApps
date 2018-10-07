@@ -62,7 +62,7 @@ class ScheduleAdapter(private val context: Context, private val items: MutableLi
             itemView.setOnClickListener {
                 item?.let {
                     try {
-                        context.startActivity(context.intentFor<DetailActivity>(Constants.EXTRA_EVENT to item)
+                        context.startActivity(context.intentFor<DetailActivity>(Constants.EXTRA_EVENT_ID to item.idEvent)
                                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                     } catch (e: Exception) {
                         e.printStackTrace()

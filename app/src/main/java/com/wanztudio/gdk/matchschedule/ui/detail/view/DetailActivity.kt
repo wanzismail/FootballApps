@@ -34,7 +34,7 @@ import javax.inject.Inject
 
 class DetailActivity : BaseActivity(), DetailMVPView {
 
-    var event: Event? = null
+    var eventId: String = ""
 
     @Inject
     internal lateinit var mPresenter: DetailMVPPresenter<DetailMVPView, DetailMVPInteractor>
@@ -49,21 +49,11 @@ class DetailActivity : BaseActivity(), DetailMVPView {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val intent = intent
-        event = intent.getSerializableExtra(Constants.EXTRA_EVENT) as? Event
-
-        event?.let {
-            detail_info_date.text = DateUtils.convert(event!!.dateEvent)
-            detail_home_team_name.text = event!!.strHomeTeam
-            detail_away_team_name.text = event!!.strAwayTeam
-            info_home_score.text = event!!.intHomeScore
-            info_away_score.text = event!!.intAwayScore
-        }
+        eventId = intent.getStringExtra(Constants.EXTRA_EVENT_ID)
 
         if (NetworkUtils.isNetworkAvailable(this)) {
-            mPresenter.getDetailEventApiCall(event!!.idLeague, event!!.intRound, event!!.strSeason, event!!.idEvent)
-            mPresenter.getTeamHomeDetailApiCall(event!!.idHomeTeam)
-            mPresenter.getTeamAwayDetailApiCall(event!!.idAwayTeam)
             showLoading()
+            mPresenter.getDetailEventApiCall(eventId)
         } else {
             Toast.makeText(this, getString(R.string.message_no_network), Toast.LENGTH_SHORT)
         }
@@ -86,8 +76,12 @@ class DetailActivity : BaseActivity(), DetailMVPView {
     }
 
     override fun showEvent(event: Event) {
-        hideLoading()
-        
+        detail_info_date.text = DateUtils.convert(event!!.dateEvent)
+        detail_home_team_name.text = event!!.strHomeTeam
+        detail_away_team_name.text = event!!.strAwayTeam
+        info_home_score.text = event!!.intHomeScore
+        info_away_score.text = event!!.intAwayScore
+
         event.intHomeScore?.let { info_home_score.text = event.intHomeScore }
         event.strHomeFormation?.let {
             home_team_formation.text = event.strHomeFormation
@@ -137,7 +131,7 @@ class DetailActivity : BaseActivity(), DetailMVPView {
             info_home_substitutes.text = homeSubstitutes
         }
 
-        event.intAwayScore?.let {info_away_score.text = event.intAwayScore }
+        event.intAwayScore?.let { info_away_score.text = event.intAwayScore }
         event.strAwayFormation?.let {
             away_team_formation.text = event.strAwayFormation
             away_team_formation.visibility = View.VISIBLE
@@ -185,6 +179,11 @@ class DetailActivity : BaseActivity(), DetailMVPView {
             }
             info_away_substitutes.text = awaySubstitutes
         }
+
+        mPresenter.getTeamHomeDetailApiCall(event.idHomeTeam)
+        mPresenter.getTeamAwayDetailApiCall(event.idAwayTeam)
+
+        hideLoading()
     }
 
 

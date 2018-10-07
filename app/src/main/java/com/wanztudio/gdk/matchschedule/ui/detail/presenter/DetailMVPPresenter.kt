@@ -19,5 +19,5 @@ interface DetailMVPPresenter<V : DetailMVPView, I : DetailMVPInteractor> : MVPPr
 
     fun getTeamHomeDetailApiCall(idTeam : String)
     fun getTeamAwayDetailApiCall(idTeam : String)
-    fun getDetailEventApiCall(idLeague : String, round : String, season : String, idEvent : String)
+    fun getDetailEventApiCall(idLeague : String)
 }
