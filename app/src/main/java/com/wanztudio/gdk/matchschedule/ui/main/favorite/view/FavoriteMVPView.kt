@@ -17,5 +17,4 @@ interface FavoriteMVPView : MVPView {
 
     fun showLoading()
     fun hideLoading()
-    fun showEvents(listEvent: List<Event>)
 }
