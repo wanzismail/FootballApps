@@ -25,7 +25,7 @@
                 fontPath="@string/typeface_medium"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Kamis, 15 Januari 1998"
+                android:text="@string/sample_date"
                 android:textColor="@color/colorPrimary"
                 android:textSize="@dimen/text_size_medium_small"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -257,7 +257,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Lineups"
+                        android:text="@string/label_lineups"
                         android:textSize="@dimen/text_size_normal" />
 
                     <RelativeLayout

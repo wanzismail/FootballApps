@@ -22,5 +22,6 @@
     <string name="label_midfield">Midfield</string>
     <string name="label_defense">Defense</string>
     <string name="label_goal_keeper">Goal Keeper</string>
+    <string name="label_lineups">Lineups</string>
 
 </resources>
