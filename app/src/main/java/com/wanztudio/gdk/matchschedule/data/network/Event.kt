@@ -61,7 +61,7 @@ data class Event(
 	val idHomeTeam: String,
 
 	@field:SerializedName("intHomeScore")
-	val intHomeScore: String? = null,
+	val intHomeScore : String,
 
 	@field:SerializedName("dateEvent")
 	val dateEvent: String,
@@ -160,11 +160,11 @@ data class Event(
 	val strLeague: String? = null,
 
 	@field:SerializedName("intAwayScore")
-	val intAwayScore: String? = null,
+	val intAwayScore: String,
 
 	@field:SerializedName("strCity")
 	val strCity: Any? = null,
 
 	@field:SerializedName("strPoster")
 	val strPoster: Any? = null
-) : Serializable
+) : Serializable {}

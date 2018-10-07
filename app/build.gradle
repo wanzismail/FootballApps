@@ -62,7 +62,7 @@ kapt {
 
 configurations.all {
     exclude group: 'com.android.support', module: 'support-v13'
-    resolutionStrategy.force "com.android.support:support-annotations:$supportLibraryVersion"
+    resolutionStrategy.force "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
 }
 
 dependencies {
@@ -80,6 +80,9 @@ dependencies {
 
     // Anko
     implementation "org.jetbrains.anko:anko-commons:$rootProject.ankoVersion"
+    implementation "org.jetbrains.anko:anko-design:$rootProject.ankoVersion"
+    implementation "org.jetbrains.anko:anko-sqlite:$rootProject.ankoVersion"
+
 
     // Network
     implementation "com.amitshekhar.android:rx2-android-networking:$rootProject.rx2FastAndroidNetworking"

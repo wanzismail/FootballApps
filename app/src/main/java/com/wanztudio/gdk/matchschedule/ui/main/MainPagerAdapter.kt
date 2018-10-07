@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.wanztudio.gdk.matchschedule.ui.main.prev.view.PrevFragment
 import com.wanztudio.gdk.matchschedule.ui.main.next.view.NextFragment
+import com.wanztudio.gdk.matchschedule.ui.main.prev.view.FavoriteFragment
 
 /**
  * For LEARNING
@@ -28,6 +29,7 @@ class MainPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAda
         return when (position) {
             0 -> PrevFragment.newInstance()
             1 -> NextFragment.newInstance()
+            2 -> FavoriteFragment.newInstance()
             else -> null
         }
     }

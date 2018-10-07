@@ -54,7 +54,7 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
     }
 
     private fun setUpPagerAdapter() {
-        mainPagerAdapter.count = 2
+        mainPagerAdapter.count = 3
         content_viewpager.adapter = mainPagerAdapter
         content_viewpager.offscreenPageLimit = 2
         content_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
@@ -88,6 +88,10 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
             }
             R.id.action_next -> {
                 content_viewpager.setCurrentItem(1, true)
+                return@OnNavigationItemSelectedListener true
+            }
+            R.id.action_favorite -> {
+                content_viewpager.setCurrentItem(2, true)
                 return@OnNavigationItemSelectedListener true
             }
         }
