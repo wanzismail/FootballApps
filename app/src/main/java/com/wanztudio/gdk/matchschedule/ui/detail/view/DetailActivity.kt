@@ -1,14 +1,19 @@
 package com.wanztudio.gdk.matchschedule.ui.detail.view
 
+import android.database.sqlite.SQLiteConstraintException
 import android.opengl.Visibility
 import android.os.Bundle
 import android.provider.Contacts
+import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.wanztudio.framework.mvp.ui.login.view.DetailMVPView
 import com.wanztudio.gdk.matchschedule.R
+import com.wanztudio.gdk.matchschedule.data.database.FavoriteMatch
+import com.wanztudio.gdk.matchschedule.data.database.database
 import com.wanztudio.gdk.matchschedule.data.network.Event
 import com.wanztudio.gdk.matchschedule.data.network.Team
 import com.wanztudio.gdk.matchschedule.ui.base.view.BaseActivity
@@ -19,7 +24,13 @@ import com.wanztudio.gdk.matchschedule.util.DateUtils
 import com.wanztudio.gdk.matchschedule.util.NetworkUtils
 import com.wanztudio.gdk.matchschedule.util.extension.loadImage
 import kotlinx.android.synthetic.main.activity_detail.*
+import kotlinx.android.synthetic.main.fragment_schedule.*
 import kotlinx.android.synthetic.main.list_item_schedule.*
+import org.jetbrains.anko.db.classParser
+import org.jetbrains.anko.db.delete
+import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.db.select
+import org.jetbrains.anko.design.snackbar
 import javax.inject.Inject
 
 /**
@@ -34,7 +45,11 @@ import javax.inject.Inject
 
 class DetailActivity : BaseActivity(), DetailMVPView {
 
-    var eventId: String = ""
+    private var eventId: String = ""
+    private var event : Event? = null 
+    private var menuItem: Menu? = null
+    private var isFavorite: Boolean = false
+    private lateinit var id: String
 
     @Inject
     internal lateinit var mPresenter: DetailMVPPresenter<DetailMVPView, DetailMVPInteractor>
@@ -57,6 +72,8 @@ class DetailActivity : BaseActivity(), DetailMVPView {
         } else {
             Toast.makeText(this, getString(R.string.message_no_network), Toast.LENGTH_SHORT)
         }
+
+        favoriteState()
     }
 
     override fun showHomeTeam(team: Team) {
@@ -76,6 +93,8 @@ class DetailActivity : BaseActivity(), DetailMVPView {
     }
 
     override fun showEvent(event: Event) {
+        this.event = event
+        
         detail_info_date.text = DateUtils.convert(event!!.dateEvent)
         detail_home_team_name.text = event!!.strHomeTeam
         detail_away_team_name.text = event!!.strAwayTeam
@@ -186,6 +205,15 @@ class DetailActivity : BaseActivity(), DetailMVPView {
         hideLoading()
     }
 
+    private fun favoriteState(){
+        database.use {
+            val result = select(FavoriteMatch.TABLE_FAVORITE)
+                    .whereArgs("(MATCH_ID = {id})",
+                            "id" to eventId)
+            val favorite = result.parseList(classParser<FavoriteMatch>())
+            if (!favorite.isEmpty()) isFavorite = true
+        }
+    }
 
     override fun hideLoading() {
         progress_circular.visibility = View.GONE
@@ -200,14 +228,69 @@ class DetailActivity : BaseActivity(), DetailMVPView {
         finish()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.detail_menu, menu)
+        menuItem = menu
+        setFavorite()
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
+        return when (item.itemId) {
             android.R.id.home -> {
                 onBackPressed()
-                return true
+                true
             }
+            R.id.action_favorite -> {
+                if (event != null) {
+                    if (isFavorite) removeFromFavorite() else addToFavorite()
+                    isFavorite = !isFavorite
+                    setFavorite()
+                } else {
+                    Toast.makeText(this, getString(R.string.alert_loading), Toast.LENGTH_SHORT)
+                }
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
         }
-        return false
+    }
+
+    private fun addToFavorite(){
+        try {
+            database.use {
+                insert(FavoriteMatch.TABLE_FAVORITE,
+                        FavoriteMatch.MATCH_ID to eventId,
+                        FavoriteMatch.MATCH_DATE to event!!.dateEvent,
+                        FavoriteMatch.MATCH_HOME_TEAM to event!!.strHomeTeam,
+                        FavoriteMatch.MATCH_HOME_SCORE to event!!.intHomeScore,
+                        FavoriteMatch.MATCH_AWAY_TEAM to event!!.strAwayTeam,
+                        FavoriteMatch.MATCH_AWAY_SCORE to event!!.intAwayScore
+                        )
+            }
+            snackbar(progress_circular, "Added to favorite").show()
+        } catch (e: SQLiteConstraintException){
+            snackbar(progress_circular, e.localizedMessage).show()
+        }
+    }
+
+    private fun removeFromFavorite(){
+        try {
+            database.use {
+                delete(FavoriteMatch.TABLE_FAVORITE, "(MATCH_ID = {id})",
+                        "id" to eventId)
+            }
+            snackbar(progress_circular, "Removed to favorite").show()
+        } catch (e: SQLiteConstraintException){
+            snackbar(progress_circular, e.localizedMessage).show()
+        }
+    }
+
+    private fun setFavorite() {
+        if (isFavorite)
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_added_to_favorites)
+        else
+            menuItem?.getItem(0)?.icon = ContextCompat.getDrawable(this, R.drawable.ic_add_to_favorites)
     }
 
     override fun onDestroy() {

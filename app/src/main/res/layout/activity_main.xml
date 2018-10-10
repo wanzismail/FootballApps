@@ -18,7 +18,7 @@
         android:foreground="?attr/selectableItemBackground"
         app:itemIconTint="@drawable/navigation_color_selector"
         app:itemTextColor="@drawable/navigation_color_selector"
-        app:menu="@menu/bottom_navigation" />
+        app:menu="@menu/bottom_navigation_menu" />
 
 
     <android.support.v4.view.ViewPager
