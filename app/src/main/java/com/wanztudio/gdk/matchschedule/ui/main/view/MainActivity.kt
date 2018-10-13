@@ -17,6 +17,9 @@ import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
+import android.app.Activity
+
+
 
 /**
  * For LEARNING
@@ -32,6 +35,7 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
 
     @Inject
     internal lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+
     internal lateinit var mainPagerAdapter: MainPagerAdapter
 
     var prevMenuItem: MenuItem? = null

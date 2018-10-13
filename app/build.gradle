@@ -52,14 +52,14 @@ android {
     }
 }
 
+androidExtensions {
+    experimental = true
+}
+
 kotlin {
     experimental {
         coroutines "enable"
     }
-}
-
-kapt {
-    generateStubs = true
 }
 
 configurations.all {
@@ -117,7 +117,7 @@ dependencies {
     /** TEST LOGIC **/
     testImplementation "junit:junit:$rootProject.ext.junitVersion"
 
-    /** TEST WITH MOCK OBJECT **/
+    /** TEST LOGIC WITH MOCK OBJECT **/
     testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
     testImplementation "org.mockito:mockito-inline:$rootProject.mockitoVersion"
 
@@ -138,4 +138,5 @@ dependencies {
     androidTestImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
     kaptAndroidTest "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
 }
+
 
