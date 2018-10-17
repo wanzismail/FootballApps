@@ -17,6 +17,9 @@ import dagger.android.support.HasSupportFragmentInjector
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.startActivity
 import javax.inject.Inject
+import android.app.Activity
+
+
 
 /**
  * For LEARNING
@@ -32,6 +35,7 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
 
     @Inject
     internal lateinit var fragmentDispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+
     internal lateinit var mainPagerAdapter: MainPagerAdapter
 
     var prevMenuItem: MenuItem? = null
@@ -56,7 +60,7 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
     private fun setUpPagerAdapter() {
         mainPagerAdapter.count = 3
         content_viewpager.adapter = mainPagerAdapter
-        content_viewpager.offscreenPageLimit = 2
+        content_viewpager.offscreenPageLimit = 3
         content_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }

@@ -24,7 +24,7 @@ import com.wanztudio.gdk.matchschedule.util.DateUtils
 import com.wanztudio.gdk.matchschedule.util.NetworkUtils
 import com.wanztudio.gdk.matchschedule.util.extension.loadImage
 import kotlinx.android.synthetic.main.activity_detail.*
-import kotlinx.android.synthetic.main.fragment_schedule.*
+import kotlinx.android.synthetic.main.fragment_schedule_prev.*
 import kotlinx.android.synthetic.main.list_item_schedule.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.delete
@@ -67,7 +67,6 @@ class DetailActivity : BaseActivity(), DetailMVPView {
         eventId = intent.getStringExtra(Constants.EXTRA_EVENT_ID)
 
         if (NetworkUtils.isNetworkAvailable(this)) {
-            showLoading()
             mPresenter.getDetailEventApiCall(eventId)
         } else {
             Toast.makeText(this, getString(R.string.message_no_network), Toast.LENGTH_SHORT)
@@ -201,8 +200,6 @@ class DetailActivity : BaseActivity(), DetailMVPView {
 
         mPresenter.getTeamHomeDetailApiCall(event.idHomeTeam)
         mPresenter.getTeamAwayDetailApiCall(event.idAwayTeam)
-
-        hideLoading()
     }
 
     private fun favoriteState(){

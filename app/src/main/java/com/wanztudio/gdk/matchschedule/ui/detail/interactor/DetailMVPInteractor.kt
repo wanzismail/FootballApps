@@ -17,6 +17,6 @@ import io.reactivex.Observable
 
 interface DetailMVPInteractor : MVPInteractor {
 
-    fun getDetailEventApiCall(idLeague : String): Observable<ScheduleResponse>
+    fun getDetailEventApiCall(idEvent : String): Observable<ScheduleResponse>
     fun getDetailTeamApiCall(idTeam: String ): Observable<TeamResponse>
 }

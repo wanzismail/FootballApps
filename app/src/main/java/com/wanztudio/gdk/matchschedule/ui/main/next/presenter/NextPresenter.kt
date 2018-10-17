@@ -21,13 +21,18 @@ import javax.inject.Inject
 class NextPresenter<V : NextMVPView, I : NextMVPInteractor> @Inject constructor(interactor: I, schedulerProvider: SchedulerProvider, compositeDisposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = compositeDisposable), NextMVPPresenter<V, I> {
 
     override fun getNextSchedule(idLeague: Int) {
-            interactor?.let {
-                compositeDisposable.add(it.getNextScheduleApiCall(idLeague)
-                        .compose(schedulerProvider.ioToMainObservableScheduler())
-                        .subscribe({ response ->
-                            getView()?.showEvents(response.events)
-                        }, { err -> println("Request failed.") }))
-            }
+        getView()?.showLoading()
+        interactor?.let {
+            compositeDisposable.add(it.getNextScheduleApiCall(idLeague)
+                    .compose(schedulerProvider.ioToMainObservableScheduler())
+                    .subscribe({ response ->
+                        getView()?.showEvents(response.events)
+                        getView()?.hideLoading()
+                    }, { err ->
+                        println("Request failed.")
+                        getView()?.hideLoading()
+                    }))
+        }
     }
 
 }
