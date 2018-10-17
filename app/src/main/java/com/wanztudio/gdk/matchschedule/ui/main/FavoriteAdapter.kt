@@ -48,7 +48,7 @@ class FavoriteAdapter(private val context: Context, private val items: MutableLi
 
     inner class ScheduleViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
             LayoutContainer {
-        
+
         fun bindItem(item : FavoriteMatch) {
             info_date.text = item.evenDate?.let { DateUtils.convert(item.evenDate)}
             home_team_name.text = item.homeTeamName

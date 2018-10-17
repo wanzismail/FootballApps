@@ -14,5 +14,7 @@ package com.wanztudio.gdk.matchschedule.util
 object Constants {
 
     internal val ID_LEAGUE = 4397
+    internal val ID_EVENT = "578159"
+    internal val ID_TEAM = "133604"
     internal val EXTRA_EVENT_ID = "extra_event_id"
 }

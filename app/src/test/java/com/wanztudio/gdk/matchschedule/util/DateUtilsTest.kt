@@ -7,13 +7,13 @@ import org.junit.Assert.*
 import java.text.SimpleDateFormat
 
 /**
- * For Bridge Technology Services
- * Created by Ridwan Ismail on 10 October 2018
- * You can contact me at : ridwan.ismail@bridgetech.co.id
+ * For LEARNING
+ * Created by Ridwan Ismail on 14 October 2018
+ * You can contact me at : ismail.ridwan98@gmail.com
  * -------------------------------------------------
- * AHA
+ * FOOTBALL MATCH CLUB
  * com.wanztudio.gdk.matchschedule.util
- * or see link for more detail https://gitlab.com/dev-bridgetech-aha/aha-mobile-android
+ * or see link for more detail https://github.com/iwanz98/FootballApp
  */
 
 class DateUtilsTest {

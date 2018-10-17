@@ -60,7 +60,7 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
     private fun setUpPagerAdapter() {
         mainPagerAdapter.count = 3
         content_viewpager.adapter = mainPagerAdapter
-        content_viewpager.offscreenPageLimit = 2
+        content_viewpager.offscreenPageLimit = 3
         content_viewpager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
             override fun onPageScrollStateChanged(state: Int) {
             }

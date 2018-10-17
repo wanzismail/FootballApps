@@ -8,6 +8,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.wanztudio.gdk.matchschedule.R.id.*
 import com.wanztudio.gdk.matchschedule.R.layout.list_item_schedule
 import com.wanztudio.gdk.matchschedule.data.network.Event
 import com.wanztudio.gdk.matchschedule.ui.detail.view.DetailActivity
@@ -48,7 +49,7 @@ class ScheduleAdapter(private val context: Context, private val items: MutableLi
 
     inner class ScheduleViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
             LayoutContainer {
-        
+
         fun bindItem(item : Event) {
             info_date.text = item.dateEvent?.let { DateUtils.convert(item.dateEvent)}
             home_team_name.text = item.strHomeTeam

@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.mindorks.framework.matchschedule", appContext.packageName)
+        assertEquals("com.wanztudio.gdk.matchschedule", appContext.packageName)
     }
 }

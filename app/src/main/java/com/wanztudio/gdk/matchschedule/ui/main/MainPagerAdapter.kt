@@ -29,7 +29,7 @@ class MainPagerAdapter(fragmentManager: FragmentManager) : FragmentStatePagerAda
         return when (position) {
             0 -> PrevFragment.newInstance()
             1 -> NextFragment.newInstance()
-//            2 -> FavoriteFragment.newInstance()
+            2 -> FavoriteFragment.newInstance()
             else -> null
         }
     }

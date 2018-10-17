@@ -9,19 +9,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.wanztudio.gdk.matchschedule.R
-import com.wanztudio.gdk.matchschedule.R.id.schedule_recycler
-import com.wanztudio.gdk.matchschedule.R.id.swipe_refresh
 import com.wanztudio.gdk.matchschedule.data.database.FavoriteMatch
 import com.wanztudio.gdk.matchschedule.data.database.database
-import com.wanztudio.gdk.matchschedule.data.network.Event
-import com.wanztudio.gdk.matchschedule.ui.base.view.BaseFragment
 import com.wanztudio.gdk.matchschedule.ui.main.FavoriteAdapter
-import com.wanztudio.gdk.matchschedule.ui.main.ScheduleAdapter
-import kotlinx.android.synthetic.main.fragment_schedule.*
-import org.jetbrains.anko.AnkoContext
+import kotlinx.android.synthetic.main.fragment_schedule_fav.*
+import kotlinx.android.synthetic.main.fragment_schedule_prev.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.select
-import javax.inject.Inject
 
 /**
  * For LEARNING
@@ -49,7 +43,7 @@ class FavoriteFragment : Fragment(), FavoriteMVPView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_schedule, container, false)
+        return inflater.inflate(R.layout.fragment_schedule_fav, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -62,13 +56,13 @@ class FavoriteFragment : Fragment(), FavoriteMVPView {
         layoutManager = LinearLayoutManager(activity)
 
         layoutManager.orientation = LinearLayoutManager.VERTICAL
-        schedule_recycler.layoutManager = layoutManager
-        schedule_recycler.itemAnimator = DefaultItemAnimator()
-        schedule_recycler.setHasFixedSize(true)
-        schedule_recycler.adapter = favoriteAdapter
+        schedule_fav_recycler.layoutManager = layoutManager
+        schedule_fav_recycler.itemAnimator = DefaultItemAnimator()
+        schedule_fav_recycler.setHasFixedSize(true)
+        schedule_fav_recycler.adapter = favoriteAdapter
 
-        swipe_refresh.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
-        swipe_refresh.setOnRefreshListener {
+        swipe_refresh_fav.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+        swipe_refresh_fav.setOnRefreshListener {
             getFavorites()
         }
 
@@ -92,16 +86,16 @@ class FavoriteFragment : Fragment(), FavoriteMVPView {
     private fun showFavorites(listEvent: List<FavoriteMatch>) {
         hideLoading()
         listEvent?.let{
-            if (listEvent.size > 0) empty_data.visibility =  View.GONE
+            if (listEvent.size > 0) empty_fav_data.visibility =  View.GONE
             favoriteAdapter.updateFavoriteMatchsToList(listEvent)
         }
     }
 
     override fun showLoading() {
-        swipe_refresh.isRefreshing = true
+        swipe_refresh_fav.isRefreshing = true
     }
 
     override fun hideLoading() {
-        swipe_refresh.isRefreshing = false
+        swipe_refresh_fav.isRefreshing = false
     }
 }
