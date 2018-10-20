@@ -7,7 +7,10 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+
     compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
     defaultConfig {
         applicationId "com.wanztudio.gdk.matchschedule"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -20,7 +23,6 @@ android {
     signingConfigs {
         release
     }
-
     flavorDimensions "tier"
     productFlavors {
         dev {
@@ -68,7 +70,7 @@ configurations.all {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
@@ -114,13 +116,13 @@ dependencies {
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
 
     // Dependencies for local unit tests
+
     /** TEST LOGIC **/
     testImplementation "junit:junit:$rootProject.ext.junitVersion"
 
     /** TEST LOGIC WITH MOCK OBJECT **/
     testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
     testImplementation "org.mockito:mockito-inline:$rootProject.mockitoVersion"
-
     kaptTest "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
 
     // UI Testing
