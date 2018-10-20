@@ -20,6 +20,7 @@ import android.support.v7.widget.RecyclerView.ViewHolder
 import android.view.View
 import android.view.ViewGroup
 import com.wanztudio.gdk.matchschedule.R
+import com.wanztudio.gdk.matchschedule.R.id.schedule_next_recycler
 import com.wanztudio.gdk.matchschedule.R.id.schedule_prev_recycler
 import org.hamcrest.Description
 import org.hamcrest.Matcher
@@ -69,7 +70,7 @@ class MainActivityTest {
 
         onView(withId(R.id.content_viewpager)).check(matches(isDisplayed()))
         onView(withId(R.id.content_viewpager)).perform(ViewActions.swipeLeft())
-        onView(withId(R.id.content_viewpager)).perform(ViewActions.swipeLeft())
+        onView(withId(R.id.content_viewpager)).perform(ViewActions. swipeLeft())
         onView(withId(R.id.content_viewpager)).perform(ViewActions.swipeRight())
 
         onView(withId(R.id.schedule_next_recycler)).check(matches(isDisplayed()))
@@ -115,6 +116,39 @@ class MainActivityTest {
                 isDisplayed())).perform(click())
     }
 
+
+
+    @Test
+    fun testAppBehaviour() {
+        try {
+            Thread.sleep(3000)
+        } catch (e: InterruptedException) {
+            e.printStackTrace()
+        }
+
+        onView(allOf(withId(R.id.action_next), withContentDescription("Next Match"),
+                childAtPosition(
+                        childAtPosition(
+                                withId(R.id.bottom_navigation),
+                                0),
+                        1),
+                isDisplayed())).perform(click())
+
+        onView(withId(schedule_next_recycler)).check(matches(isDisplayed()))
+        onView(withId(schedule_next_recycler)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(12))
+        onView(withId(schedule_next_recycler)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(12, click()))
+
+        onView(withText("VS"))
+                .check(matches(isDisplayed()))
+
+        onView(withId(R.id.action_favorite)).check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+        onView(withId(R.id.action_favorite)).perform(click())
+
+        pressBack()
+
+//        onView(withId(R.id.content_viewpager)).check(matches(isDisplayed()))
+//        onView(withId(R.id.content_viewpager)).perform(ViewActions.swipeLeft())
+    }
 
 
     private fun childAtPosition(
