@@ -22,37 +22,51 @@ import javax.inject.Inject
 class DetailPresenter<V : DetailMVPView, I : DetailMVPInteractor> @Inject constructor(interactor: I, schedulerProvider: SchedulerProvider, compositeDisposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = compositeDisposable), DetailMVPPresenter<V, I> {
 
     override fun getTeamHomeDetailApiCall(idTeam: String) {
+        getView()?.showLoading()
         interactor?.let {
             compositeDisposable.add(it.getDetailTeamApiCall(idTeam)
                     .compose(schedulerProvider.ioToMainObservableScheduler())
                     .subscribe({ response ->
                         response.teams?.let { info ->
                             getView()?.showHomeTeam(info.get(0)!!)
+                            getView()?.hideLoading()
                         }
-                    }, { err -> println("Request failed.") }))
+                    }, { err ->
+                        println("Request failed.")
+                        getView()?.hideLoading()
+                    }))
         }
     }
 
     override fun getTeamAwayDetailApiCall(idTeam: String) {
+        getView()?.showLoading()
         interactor?.let {
             compositeDisposable.add(it.getDetailTeamApiCall(idTeam)
                     .compose(schedulerProvider.ioToMainObservableScheduler())
                     .subscribe({ response ->
                         response.teams?.let { info ->
                             getView()?.showAwayTeam(info.get(0)!!)
+                            getView()?.hideLoading()
                         }
-                    }, { err -> println("Request failed.") }))
+                    }, { err ->
+                        println("Request failed.")
+                        getView()?.hideLoading()
+                    }))
         }
     }
 
-    override fun getDetailEventApiCall(idLeague: String) {
+    override fun getDetailEventApiCall(idEvent: String) {
+        getView()?.showLoading()
         interactor?.let {
-            compositeDisposable.add(it.getDetailEventApiCall(idLeague)
+            compositeDisposable.add(it.getDetailEventApiCall(idEvent)
                     .compose(schedulerProvider.ioToMainObservableScheduler())
                     .subscribe({ response ->
                         getView()?.showEvent(response.events.get(0))
-
-                    }, { err -> println("Request failed.") }))
+                        getView()?.hideLoading()
+                    }, { err ->
+                        println("Request failed.")
+                        getView()?.hideLoading()
+                    }))
         }
     }
 

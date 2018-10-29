@@ -21,18 +21,13 @@ import java.util.*
 object DateUtils {
 
     fun convert(date : String): String {
-        var dateFormat = SimpleDateFormat("dd MMM yyyy HH:mm:ss Z")
-
         try {
-            dateFormat = SimpleDateFormat("yyyy-MM-dd")
-            val formatedDate = dateFormat.parse(date)
-
-            dateFormat  = SimpleDateFormat("EEEE, dd MMMM yyyy")
-            return dateFormat.format(formatedDate)
+            val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+            val newDateFormat =  SimpleDateFormat("EEEE, dd MMMM yyyy")
+            return newDateFormat.format(dateFormat.parse(date))
         } catch (e: ParseException) {
             e.printStackTrace()
         }
-
         return ""
     }
 }

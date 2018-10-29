@@ -23,5 +23,8 @@
     <string name="label_defense">Defense</string>
     <string name="label_goal_keeper">Goal Keeper</string>
     <string name="label_lineups">Lineups</string>
+    <string name="menu_favorite_match">Favorites</string>
+    <string name="action_favorite">Favorite</string>
+    <string name="alert_loading">Please wait</string>
 
 </resources>

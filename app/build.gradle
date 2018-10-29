@@ -7,7 +7,10 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+
     compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
     defaultConfig {
         applicationId "com.wanztudio.gdk.matchschedule"
         minSdkVersion rootProject.ext.minSdkVersion
@@ -20,7 +23,6 @@ android {
     signingConfigs {
         release
     }
-
     flavorDimensions "tier"
     productFlavors {
         dev {
@@ -56,17 +58,19 @@ androidExtensions {
     experimental = true
 }
 
-kapt {
-    generateStubs = true
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
 }
 
 configurations.all {
     exclude group: 'com.android.support', module: 'support-v13'
-    resolutionStrategy.force "com.android.support:support-annotations:$supportLibraryVersion"
+    resolutionStrategy.force "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     // Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$rootProject.kotlinVersion"
@@ -80,6 +84,9 @@ dependencies {
 
     // Anko
     implementation "org.jetbrains.anko:anko-commons:$rootProject.ankoVersion"
+    implementation "org.jetbrains.anko:anko-design:$rootProject.ankoVersion"
+    implementation "org.jetbrains.anko:anko-sqlite:$rootProject.ankoVersion"
+    implementation "org.jetbrains.anko:anko-coroutines:$rootProject.ankoVersion"
 
     // Network
     implementation "com.amitshekhar.android:rx2-android-networking:$rootProject.rx2FastAndroidNetworking"
@@ -105,25 +112,31 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
     implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
 
-    // Code generator for view
-    implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
-    kapt "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
-
     // Logger
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
 
     // Dependencies for local unit tests
+
+    /** TEST LOGIC **/
     testImplementation "junit:junit:$rootProject.ext.junitVersion"
+
+    /** TEST LOGIC WITH MOCK OBJECT **/
     testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    testImplementation "org.mockito:mockito-inline:$rootProject.mockitoVersion"
     kaptTest "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
 
     // UI Testing
+    androidTestImplementation "com.android.support.test:runner:$rootProject.runnerVersion"
+    androidTestImplementation "com.android.support.test:rules:$rootProject.rulesVersion"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espressoVersion"
-    androidTestImplementation "com.android.support.test.espresso:espresso-intents:$rootProject.espressoVersion"
+    androidTestImplementation("com.android.support.test.espresso:espresso-contrib:$rootProject.espressoVersion") {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'design'
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+    }
     androidTestImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
     kaptAndroidTest "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
-
-    // Android Kotlin Extension
-    implementation "androidx.core:core-ktx:$rootProject.androidKTXVersion"
 }
+
 

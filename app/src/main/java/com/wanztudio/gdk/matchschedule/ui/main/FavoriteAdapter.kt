@@ -2,15 +2,13 @@ package com.wanztudio.gdk.matchschedule.ui.main
 
 import android.content.Context
 import android.content.Intent
-import android.net.Uri
-import android.support.v4.content.ContextCompat.startActivity
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.wanztudio.gdk.matchschedule.R.id.*
 import com.wanztudio.gdk.matchschedule.R.layout.list_item_schedule
-import com.wanztudio.gdk.matchschedule.data.network.Event
+import com.wanztudio.gdk.matchschedule.data.database.FavoriteMatch
 import com.wanztudio.gdk.matchschedule.ui.detail.view.DetailActivity
 import com.wanztudio.gdk.matchschedule.util.Constants
 import com.wanztudio.gdk.matchschedule.util.DateUtils
@@ -30,8 +28,8 @@ import org.jetbrains.anko.startActivity
  * or see link for more detail https://github.com/iwanz98/FootballApp
  */
 
-class ScheduleAdapter(private val context: Context, private val items: MutableList<Event>)
-    : RecyclerView.Adapter<ScheduleAdapter.ScheduleViewHolder>() {
+class FavoriteAdapter(private val context: Context, private val items: MutableList<FavoriteMatch>)
+    : RecyclerView.Adapter<FavoriteAdapter.ScheduleViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ScheduleViewHolder
             = ScheduleViewHolder(LayoutInflater.from(context).inflate(list_item_schedule, parent, false))
@@ -42,7 +40,8 @@ class ScheduleAdapter(private val context: Context, private val items: MutableLi
 
     override fun getItemCount(): Int = items.size
 
-    internal fun addEventsToList(events: List<Event>) {
+    internal fun updateFavoriteMatchsToList(events: List<FavoriteMatch>) {
+        this.items.clear();
         this.items.addAll(events)
         notifyDataSetChanged()
     }
@@ -50,20 +49,20 @@ class ScheduleAdapter(private val context: Context, private val items: MutableLi
     inner class ScheduleViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
             LayoutContainer {
 
-        fun bindItem(item : Event) {
-            info_date.text = item.dateEvent?.let { DateUtils.convert(item.dateEvent)}
-            home_team_name.text = item.strHomeTeam
-            home_score.text = item.intHomeScore?.let { item.intHomeScore.toString()}
-            away_team_name.text = item.strAwayTeam
-            away_score.text = item.intAwayScore?.let { item.intAwayScore.toString()}
+        fun bindItem(item : FavoriteMatch) {
+            info_date.text = item.evenDate?.let { DateUtils.convert(item.evenDate)}
+            home_team_name.text = item.homeTeamName
+            home_score.text = item.homeTeamScore?.let { item.homeTeamScore.toString()}
+            away_team_name.text = item.awayTeamName
+            away_score.text = item.awayTeamScore?.let { item.awayTeamScore.toString()}
             setItemClickListener(item)
         }
 
-        private fun setItemClickListener(item: Event) {
+        private fun setItemClickListener(item: FavoriteMatch) {
             itemView.setOnClickListener {
                 item?.let {
                     try {
-                        context.startActivity(context.intentFor<DetailActivity>(Constants.EXTRA_EVENT_ID to item.idEvent)
+                        context.startActivity(context.intentFor<DetailActivity>(Constants.EXTRA_EVENT_ID to item.evenId)
                                 .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
                     } catch (e: Exception) {
                         e.printStackTrace()

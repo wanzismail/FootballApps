@@ -12,13 +12,12 @@ import com.wanztudio.gdk.matchschedule.R
 import com.wanztudio.gdk.matchschedule.data.network.Event
 import com.wanztudio.gdk.matchschedule.ui.base.view.BaseFragment
 import com.wanztudio.gdk.matchschedule.ui.main.ScheduleAdapter
-import com.wanztudio.gdk.matchschedule.ui.main.next.interactor.DetailMVPInteractor
 import com.wanztudio.gdk.matchschedule.ui.main.next.interactor.NextMVPInteractor
-import com.wanztudio.gdk.matchschedule.ui.main.next.presenter.DetailMVPPresenter
 import com.wanztudio.gdk.matchschedule.ui.main.next.presenter.NextMVPPresenter
 import com.wanztudio.gdk.matchschedule.util.Constants
 import com.wanztudio.gdk.matchschedule.util.NetworkUtils
-import kotlinx.android.synthetic.main.fragment_schedule.*
+import kotlinx.android.synthetic.main.fragment_schedule_next.*
+import kotlinx.android.synthetic.main.fragment_schedule_prev.*
 import javax.inject.Inject
 
 
@@ -50,7 +49,7 @@ class NextFragment : BaseFragment(), NextMVPView {
     internal lateinit var mPresenter: NextMVPPresenter<NextMVPView, NextMVPInteractor>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?)
-            = inflater.inflate(R.layout.fragment_schedule, container, false)
+            = inflater.inflate(R.layout.fragment_schedule_next, container, false)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -60,13 +59,13 @@ class NextFragment : BaseFragment(), NextMVPView {
 
     override fun setUp() {
         layoutManager.orientation = LinearLayoutManager.VERTICAL
-        schedule_recycler.layoutManager = layoutManager
-        schedule_recycler.itemAnimator = DefaultItemAnimator()
-        schedule_recycler.setHasFixedSize(true)
-        schedule_recycler.adapter = scheduleAdapter
+        schedule_next_recycler.layoutManager = layoutManager
+        schedule_next_recycler.itemAnimator = DefaultItemAnimator()
+        schedule_next_recycler.setHasFixedSize(true)
+        schedule_next_recycler.adapter = scheduleAdapter
 
-        swipe_refresh.setColorSchemeColors(ContextCompat.getColor(requireContext(),R.color.colorPrimary))
-        swipe_refresh.setOnRefreshListener {
+        swipe_refresh_next.setColorSchemeColors(ContextCompat.getColor(requireContext(),R.color.colorPrimary))
+        swipe_refresh_next.setOnRefreshListener {
             getListEvent()
         }
 
@@ -76,26 +75,24 @@ class NextFragment : BaseFragment(), NextMVPView {
     fun getListEvent() {
         if (NetworkUtils.isNetworkAvailable(requireContext())) {
             mPresenter.getNextSchedule(Constants.ID_LEAGUE)
-            showLoading()
         } else {
             Toast.makeText(context, getString(R.string.message_no_network), Toast.LENGTH_SHORT)
         }
     }
 
     override fun showEvents(listEvent: List<Event>) {
-        hideLoading()
         listEvent?.let {
-            empty_data.visibility = View.GONE
+            empty_next_data.visibility = View.GONE
             scheduleAdapter.addEventsToList(listEvent)
         }
     }
 
     override fun showLoading() {
-        swipe_refresh.isRefreshing = true
+        swipe_refresh_next.isRefreshing = true
     }
 
     override fun hideLoading() {
-        swipe_refresh.isRefreshing = false
+        swipe_refresh_next.isRefreshing = false
     }
     override fun onDestroyView() {
         mPresenter.onDetach()

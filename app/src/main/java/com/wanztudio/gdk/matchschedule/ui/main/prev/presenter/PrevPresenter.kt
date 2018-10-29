@@ -22,11 +22,16 @@ class PrevPresenter<V : PrevMVPView, I : PrevMVPInteractor> @Inject constructor(
 
     override fun getPrevSchedule(idLeague: Int) {
         interactor?.let {
+            getView()?.showLoading()
             compositeDisposable.add(it.getPrevScheduleApiCall(idLeague)
                     .compose(schedulerProvider.ioToMainObservableScheduler())
                     .subscribe({ response ->
                         getView()?.showEvents(response.events)
-                    }, { err -> println("Request failed.") }))
+                        getView()?.hideLoading()
+                    }, { err ->
+                        println("Request failed.")
+                        getView()?.hideLoading()
+                    }))
         }
     }
 

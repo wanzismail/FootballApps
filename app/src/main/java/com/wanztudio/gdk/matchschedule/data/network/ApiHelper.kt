@@ -16,6 +16,6 @@ interface ApiHelper {
 
     fun getPrevSchedule(idLeague : Int): Observable<ScheduleResponse>
     fun getNextSchedule(idLeague : Int): Observable<ScheduleResponse>
-    fun getDetailEvent(idLeague : String): Observable<ScheduleResponse>
+    fun getDetailEvent(idEvent : String): Observable<ScheduleResponse>
     fun getTeamDetail(idTeam : String): Observable<TeamResponse>
 }
