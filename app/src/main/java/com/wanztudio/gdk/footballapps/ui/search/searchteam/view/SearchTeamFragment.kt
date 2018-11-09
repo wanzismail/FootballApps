@@ -76,8 +76,8 @@ class SearchTeamFragment : BaseFragment(), SearchTeamMVPView {
         teamAdapter = TeamAdapter(requireActivity(), ArrayList())
         search_team_recyclerview.adapter = teamAdapter
 
-        swipe_refresh_team.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
-        swipe_refresh_team.setOnRefreshListener {
+        swipe_refresh_search_team.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+        swipe_refresh_search_team.setOnRefreshListener {
             searchTeam()
         }
 
@@ -100,11 +100,11 @@ class SearchTeamFragment : BaseFragment(), SearchTeamMVPView {
     }
 
     override fun showLoading() {
-        swipe_refresh_team.isRefreshing = true
+        swipe_refresh_search_team.isRefreshing = true
     }
 
     override fun hideLoading() {
-        swipe_refresh_team.isRefreshing = false
+        swipe_refresh_search_team.isRefreshing = false
     }
 
     override fun onDestroyView() {
