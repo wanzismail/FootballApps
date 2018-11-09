@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/action_prev"
-        android:icon="@drawable/ic_thropy"
-        android:title="@string/menu_prev_match" />
+        android:id="@+id/action_match"
+        android:icon="@drawable/ic_trophy"
+        android:title="@string/menu_match" />
 
     <item
-        android:id="@+id/action_next"
-        android:icon="@drawable/ic_schedule"
-        android:title="@string/menu_next_match" />
+        android:id="@+id/action_team"
+        android:icon="@drawable/ic_teams"
+        android:title="@string/menu_team" />
 
     <item
         android:id="@+id/action_favorite"
-        android:icon="@drawable/ic_schedule"
-        android:title="@string/menu_favorite_match" />
+        android:icon="@drawable/ic_favorites"
+        android:title="@string/menu_favorite" />
 </menu>

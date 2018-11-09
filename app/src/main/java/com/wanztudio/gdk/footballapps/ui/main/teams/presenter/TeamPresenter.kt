@@ -1,0 +1,37 @@
+package com.wanztudio.gdk.footballapps.ui.main.teams.presenter
+
+import com.wanztudio.gdk.footballapps.ui.base.presenter.BasePresenter
+import com.wanztudio.gdk.footballapps.ui.main.teams.interactor.TeamMVPInteractor
+import com.wanztudio.gdk.footballapps.ui.main.teams.view.TeamMVPView
+import com.wanztudio.gdk.footballapps.util.SchedulerProvider
+import io.reactivex.disposables.CompositeDisposable
+import javax.inject.Inject
+
+/**
+ * For LEARNING
+ * Created by Ridwan Ismail on 27 September 2018
+ * You can contact me at : ismail.ridwan98@gmail.com
+ * -------------------------------------------------
+ * FOOTBALL APPS
+ * com.wanztudio.gdk.footballapps.ui.main.teams.presenter
+ * or see link for more detail https://github.com/iwanz98/FootballApps
+ */
+
+class TeamPresenter<V : TeamMVPView, I : TeamMVPInteractor> @Inject constructor(interactor: I, schedulerProvider: SchedulerProvider, compositeDisposable: CompositeDisposable) : BasePresenter<V, I>(interactor = interactor, schedulerProvider = schedulerProvider, compositeDisposable = compositeDisposable), TeamMVPPresenter<V, I> {
+
+    override fun getTeam(idLeague: String) {
+        interactor?.let {
+            getView()?.showLoading()
+            compositeDisposable.add(it.getTeamApiCall(idLeague)
+                    .compose(schedulerProvider.ioToMainObservableScheduler())
+                    .subscribe({ response ->
+                        getView()?.showTeams(response.teams)
+                        getView()?.hideLoading()
+                    }, { err ->
+                        println("Request failed.")
+                        getView()?.hideLoading()
+                    }))
+        }
+    }
+
+}

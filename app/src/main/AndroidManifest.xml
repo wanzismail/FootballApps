@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.wanztudio.gdk.matchschedule">
+    package="com.wanztudio.gdk.footballapps">
 
-  <uses-permission android:name="android.permission.INTERNET" />
-  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-  <application
-    android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
-    android:name="com.wanztudio.gdk.matchschedule.BaseApplication"
-    android:roundIcon="@mipmap/ic_launcher_round"
-    android:supportsRtl="true"
-    android:theme="@style/AppTheme">
+    <application
+        android:name="com.wanztudio.gdk.footballapps.BaseApplication"
+        android:icon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
 
-    <activity android:name="com.wanztudio.gdk.matchschedule.ui.main.view.MainActivity">
-      <intent-filter>
-        <action android:name="android.intent.action.MAIN"/>
+        <activity
+            android:theme="@style/AppTheme.Fullscreen"
+            android:name="com.wanztudio.gdk.footballapps.ui.main.view.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <category android:name="android.intent.category.LAUNCHER"/>
-      </intent-filter>
-    </activity>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
-    <activity android:name="com.wanztudio.gdk.matchschedule.ui.detail.view.DetailActivity"/>
-  </application>
+        <activity
+            android:name="com.wanztudio.gdk.footballapps.ui.detail.detailmatch.view.DetailMatchActivity" />
+        <activity
+            android:theme="@style/AppTheme.Fullscreen"
+            android:name="com.wanztudio.gdk.footballapps.ui.detail.detailteam.view.DetailTeamActivity" />
+        <activity
+            android:theme="@style/AppTheme.Fullscreen"
+            android:name="com.wanztudio.gdk.footballapps.ui.detail.detailplayer.view.DetailPlayerActivity" />
+        <activity
+            android:name="com.wanztudio.gdk.footballapps.ui.search.view.SearchActivity" />
+
+    </application>
 
 </manifest>

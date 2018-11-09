@@ -12,7 +12,7 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.wanztudio.gdk.matchschedule"
+        applicationId "com.wanztudio.gdk.footballapps"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -27,11 +27,11 @@ android {
     productFlavors {
         dev {
             buildConfigField("String", "BASE_URL", "\"https://www.thesportsdb.com/api/v1/json/1\"")
-            resValue "string", "app_name", "Football Match Schedule Dev"
+            resValue "string", "app_name", "Football Apps Dev"
         }
         production {
             buildConfigField("String", "BASE_URL", "\"https://www.thesportsdb.com/api/v1/json/1\"")
-            resValue "string", "app_name", "Football Match Schedule"
+            resValue "string", "app_name", "Football Apps"
         }
     }
     buildTypes {
@@ -86,7 +86,12 @@ dependencies {
     implementation "org.jetbrains.anko:anko-commons:$rootProject.ankoVersion"
     implementation "org.jetbrains.anko:anko-design:$rootProject.ankoVersion"
     implementation "org.jetbrains.anko:anko-sqlite:$rootProject.ankoVersion"
-    implementation "org.jetbrains.anko:anko-coroutines:$rootProject.ankoVersion"
+
+
+    // Database
+    implementation "android.arch.persistence.room:rxjava2:$rootProject.roomDatabaseVersion"
+    kapt "android.arch.persistence.room:compiler:$rootProject.roomDatabaseVersion"
+
 
     // Network
     implementation "com.amitshekhar.android:rx2-android-networking:$rootProject.rx2FastAndroidNetworking"
@@ -115,8 +120,9 @@ dependencies {
     // Logger
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
 
-    // Dependencies for local unit tests
+    implementation "de.hdodenhof:circleimageview:$rootProject.circleImageVersion"
 
+    // Dependencies for local unit tests
     /** TEST LOGIC **/
     testImplementation "junit:junit:$rootProject.ext.junitVersion"
 

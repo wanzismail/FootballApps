@@ -1,11 +1,15 @@
 <resources>
     <!-- Font -->
-    <string name="typeface_regular">fonts/roboto/roboto_regular.ttf</string>
-    <string name="typeface_medium">fonts/roboto/roboto_medium.ttf</string>
-    <string name="typeface_italic">fonts/roboto/roboto_italic.ttf</string>
-    <string name="typeface_bold">fonts/roboto/roboto_bold.ttf</string>
-    <string name="menu_prev_match">Prev Match</string>
-    <string name="menu_next_match">Next Match</string>
+    <string name="typeface_regular">fonts/proxima-nova-regular.ttf</string>
+    <string name="typeface_italic">fonts/proxima-nova-italic.ttf</string>
+    <string name="typeface_bold">fonts/proxima-nova-bold.ttf</string>
+
+    <string name="menu_match">Matches</string>
+    <string name="menu_team">Teams</string>
+    <string name="menu_favorite">Favorites</string>
+    <string name="menu_overview">Overview</string>
+    <string name="menu_player">Players</string>
+
     <string name="sample_date">Kamis, 15 Januari 1998</string>
     <string name="label_versus">VS</string>
     <string name="sample_home_score">3</string>
@@ -14,6 +18,8 @@
     <string name="sample_away_team">Persija</string>
     <string name="message_no_network">No internet connection</string>
     <string name="title_match_detail">Match Detail</string>
+    <string name="title_player_detail">Player Detail</string>
+    <string name="title_team_detail">Team Detail</string>
     <string name="label_goals">Goals</string>
     <string name="empty_data">Sorry, data not available.</string>
     <string name="label_shots">Shots</string>
@@ -23,8 +29,23 @@
     <string name="label_defense">Defense</string>
     <string name="label_goal_keeper">Goal Keeper</string>
     <string name="label_lineups">Lineups</string>
-    <string name="menu_favorite_match">Favorites</string>
     <string name="action_favorite">Favorite</string>
     <string name="alert_loading">Please wait</string>
-
+    <string name="tab_next_match">Next</string>
+    <string name="tab_last_match">Last</string>
+    <string name="sample_time">01:00</string>
+    <string name="sample_year">1933</string>
+    <string name="sample_stadium">Si Jalak Harupat</string>
+    <string name="info_add_favorite">Added to favorites</string>
+    <string name="info_remove_favorite">Removed from favorites</string>
+    <string name="info_wait">Please wait..</string>
+    <string name="sample_player">Atep</string>
+    <string name="label_weight">Weight (kg)</string>
+    <string name="label_height">Height (m)</string>
+    <string name="sample_weight">65</string>
+    <string name="sample_height">165</string>
+    <string name="sample_player_description">Player Description</string>
+    <string name="sample_player_position">Forward</string>
+    <string name="action_search">Search</string>
+    <string name="hint_search">Search</string>
 </resources>
