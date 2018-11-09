@@ -66,7 +66,7 @@ kotlin {
 
 configurations.all {
     exclude group: 'com.android.support', module: 'support-v13'
-    resolutionStrategy.force "com.android.support:support-annotations:$rootProject.supportLibraryVersion"
+    resolutionStrategy.force "com.android.support:support-annotations:$supportLibraryVersion"
 }
 
 dependencies {
