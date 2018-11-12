@@ -40,7 +40,7 @@ class MainActivityTest {
     var mActivityTestRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun testRecyclerViewBehaviour() {
+    fun testRecyclerViewBehavior() {
         try {
             Thread.sleep(3000)
         } catch (e: InterruptedException) {
@@ -61,7 +61,7 @@ class MainActivityTest {
     }
 
     @Test
-    fun testViewPagerBehaviour() {
+    fun testViewPagerBehavior() {
         try {
             Thread.sleep(3000)
         } catch (e: InterruptedException) {
@@ -83,7 +83,7 @@ class MainActivityTest {
     }
 
     @Test
-    fun testBottomNavigationBehaviour() {
+    fun testBottomNavigationBehavior() {
         try {
             Thread.sleep(3000)
         } catch (e: InterruptedException) {
@@ -119,7 +119,7 @@ class MainActivityTest {
 
 
     @Test
-    fun testAppBehaviour() {
+    fun testAppBehavior() {
         try {
             Thread.sleep(3000)
         } catch (e: InterruptedException) {
