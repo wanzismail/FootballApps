@@ -145,9 +145,6 @@ class MainActivityTest {
         onView(withId(R.id.action_favorite)).perform(click())
 
         pressBack()
-
-//        onView(withId(R.id.content_viewpager)).check(matches(isDisplayed()))
-//        onView(withId(R.id.content_viewpager)).perform(ViewActions.swipeLeft())
     }
 
 
