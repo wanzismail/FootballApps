@@ -70,7 +70,7 @@ data class Event(
 	val strCountry: Any? = null,
 
 	@SerializedName("strAwayTeam")
-	val strAwayTeam: String,
+	val strAwayTeam: String= "",
 
 	@SerializedName("strHomeLineupMidfield")
 	val strHomeLineupMidfield: String? = null,
@@ -112,7 +112,7 @@ data class Event(
 	val strFilename: String? = null,
 
 	@SerializedName("strTime")
-	val strTime: String,
+	val strTime: String = "",
 
 	@SerializedName("strAwayGoalDetails")
 	val strAwayGoalDetails: String? = null,
@@ -151,7 +151,7 @@ data class Event(
 	val strAwayLineupDefense: String? = null,
 
 	@SerializedName("strHomeTeam")
-	val strHomeTeam: String,
+	val strHomeTeam: String = "",
 
 	@SerializedName("strThumb")
 	val strThumb: Any? = null,

@@ -14,7 +14,7 @@ import io.reactivex.schedulers.Schedulers
  * or see link for more detail https://github.com/iwanz98/FootballApps
  */
 
-class SchedulerProvider {
+open class SchedulerProvider {
 
     fun <T> ioToMainObservableScheduler(): ObservableTransformer<T, T> = ObservableTransformer { upstream ->
         upstream.subscribeOn(getIOThreadScheduler())

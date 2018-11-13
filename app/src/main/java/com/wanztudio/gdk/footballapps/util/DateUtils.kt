@@ -1,5 +1,6 @@
 package com.wanztudio.gdk.footballapps.util
 
+import android.util.Log
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,10 +30,11 @@ object DateUtils {
 
     fun convertToTime(date: String): String {
         try {
-            val dateFormat = SimpleDateFormat("HH:mm:ssZ")
+            val dateFormat = SimpleDateFormat("HH:mm:ss")
             val newDateFormat = SimpleDateFormat("HH:mm")
+            val finalDate = date.split("+")[0]
             newDateFormat.timeZone = TimeZone.getTimeZone(getCurrentTimezoneOffset())
-            return newDateFormat.format(dateFormat.parse(date))
+            return newDateFormat.format(dateFormat.parse(finalDate))
         } catch (e: ParseException) {
             e.printStackTrace()
         }

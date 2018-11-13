@@ -14,9 +14,11 @@ package com.wanztudio.gdk.footballapps.util
 object Constants {
 
     // DATA SAMPLE
-    internal val ID_LEAGUE = 4397
+    internal val ID_LEAGUE = "4397"
     internal val ID_EVENT = "578159"
     internal val ID_TEAM = "133604"
+    internal val ID_PLAYER = "133604"
+    internal val KEYWORD = "arsenal"
 
     internal val LEAGUE_ID = arrayOf(
             "4328",
