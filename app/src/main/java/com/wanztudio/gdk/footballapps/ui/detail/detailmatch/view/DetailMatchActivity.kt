@@ -145,7 +145,7 @@ class DetailMatchActivity : BaseActivity(), DetailMatchMVPView {
             detail_match_info_away_substitutes.text = awaySubstitutes
         }
 
-        presenter.getTeamAwayDetailApiCall(event.idHomeTeam)
+        presenter.getTeamHomeDetailApiCall(event.idHomeTeam)
         presenter.getTeamAwayDetailApiCall(event.idAwayTeam)
     }
 
