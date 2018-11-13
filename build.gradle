@@ -52,6 +52,8 @@ ext {
     timberVersion = '4.7.1'
     constraintVersion = '2.0.0-alpha2'
     ankoVersion = '0.10.7'
+    circleImageVersion = '2.2.0'
+    roomDatabaseVersion = '1.1.1'
 
     //Test dependencies
     junitVersion = '4.12'
