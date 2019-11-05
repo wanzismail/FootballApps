@@ -16,9 +16,7 @@ import com.wanztudio.gdk.footballapps.ui.search.searchteam.interactor.SearchTeam
 import com.wanztudio.gdk.footballapps.ui.search.searchteam.presenter.SearchTeamMVPPresenter
 import com.wanztudio.gdk.footballapps.util.Constants
 import com.wanztudio.gdk.footballapps.util.NetworkUtils
-import kotlinx.android.synthetic.main.fragment_next_match.*
 import kotlinx.android.synthetic.main.fragment_search_team.*
-import kotlinx.android.synthetic.main.fragment_team.*
 import javax.inject.Inject
 
 /**
@@ -33,82 +31,82 @@ import javax.inject.Inject
 
 class SearchTeamFragment : BaseFragment(), SearchTeamMVPView {
 
-    internal val TAG = "SearchTeamFragment"
+  internal val TAG = "SearchTeamFragment"
 
-    private var keyWord  = ""
+  private var keyWord = ""
 
-    companion object {
+  companion object {
 
-        fun newInstance(keyWord : String): SearchTeamFragment {
-            val args = Bundle()
-            args.putString(Constants.EXTRA_KEYWORD, keyWord)
+    fun newInstance(keyWord: String): SearchTeamFragment {
+      val args = Bundle()
+      args.putString(Constants.EXTRA_KEYWORD, keyWord)
 
-            val fragment = SearchTeamFragment()
-            fragment.arguments = args
-            return fragment
-        }
+      val fragment = SearchTeamFragment()
+      fragment.arguments = args
+      return fragment
+    }
+  }
+
+  @Inject
+  internal lateinit var layoutManager: LinearLayoutManager
+  @Inject
+  internal lateinit var presenter: SearchTeamMVPPresenter<SearchTeamMVPView, SearchTeamMVPInteractor>
+
+  internal lateinit var teamAdapter: TeamAdapter
+
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) = inflater.inflate(R.layout.fragment_search_team, container, false)
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    presenter.onAttach(this)
+    super.onViewCreated(view, savedInstanceState)
+  }
+
+  override fun setUp() {
+    arguments?.let {
+      keyWord = it.getString(Constants.EXTRA_KEYWORD)
     }
 
-    @Inject
-    internal lateinit var layoutManager: LinearLayoutManager
-    @Inject
-    internal lateinit var presenter: SearchTeamMVPPresenter<SearchTeamMVPView, SearchTeamMVPInteractor>
+    layoutManager.orientation = LinearLayoutManager.VERTICAL
+    search_team_recyclerview.layoutManager = layoutManager
+    search_team_recyclerview.itemAnimator = DefaultItemAnimator()
+    search_team_recyclerview.setHasFixedSize(true)
 
-    internal lateinit var teamAdapter: TeamAdapter
+    teamAdapter = TeamAdapter(requireActivity(), ArrayList())
+    search_team_recyclerview.adapter = teamAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?) = inflater.inflate(R.layout.fragment_search_team, container, false)
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        presenter.onAttach(this)
-        super.onViewCreated(view, savedInstanceState)
+    swipe_refresh_search_team.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
+    swipe_refresh_search_team.setOnRefreshListener {
+      searchTeam()
     }
 
-    override fun setUp() {
-        arguments?.let {
-            keyWord = it.getString(Constants.EXTRA_KEYWORD)
-        }
+    searchTeam()
+  }
 
-        layoutManager.orientation = LinearLayoutManager.VERTICAL
-        search_team_recyclerview.layoutManager = layoutManager
-        search_team_recyclerview.itemAnimator = DefaultItemAnimator()
-        search_team_recyclerview.setHasFixedSize(true)
-
-        teamAdapter = TeamAdapter(requireActivity(), ArrayList())
-        search_team_recyclerview.adapter = teamAdapter
-
-        swipe_refresh_search_team.setColorSchemeColors(ContextCompat.getColor(requireContext(), R.color.colorPrimary))
-        swipe_refresh_search_team.setOnRefreshListener {
-            searchTeam()
-        }
-
-        searchTeam()
+  fun searchTeam() {
+    if (NetworkUtils.isNetworkAvailable(requireContext())) {
+      presenter.searchTeam(keyWord)
+    } else {
+      Toast.makeText(context, getString(R.string.message_no_network), Toast.LENGTH_SHORT)
     }
+  }
 
-    fun searchTeam() {
-        if (NetworkUtils.isNetworkAvailable(requireContext())) {
-            presenter.searchTeam(keyWord)
-        } else {
-            Toast.makeText(context, getString(R.string.message_no_network), Toast.LENGTH_SHORT)
-        }
+  override fun showTeams(listTeam: List<Team>) {
+    listTeam.let {
+      empty_search_team_data.visibility = View.GONE
+      teamAdapter.addTeamsToList(listTeam)
     }
+  }
 
-    override fun showTeams(listTeam: List<Team>) {
-        listTeam?.let{
-            empty_search_team_data.visibility = View.GONE
-            teamAdapter.addTeamsToList(listTeam)
-        }
-    }
+  override fun showLoading() {
+    swipe_refresh_search_team.isRefreshing = true
+  }
 
-    override fun showLoading() {
-        swipe_refresh_search_team.isRefreshing = true
-    }
+  override fun hideLoading() {
+    swipe_refresh_search_team.isRefreshing = false
+  }
 
-    override fun hideLoading() {
-        swipe_refresh_search_team.isRefreshing = false
-    }
-
-    override fun onDestroyView() {
-        presenter.onDetach()
-        super.onDestroyView()
-    }
+  override fun onDestroyView() {
+    presenter.onDetach()
+    super.onDestroyView()
+  }
 }

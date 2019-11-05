@@ -1,11 +1,11 @@
 package com.wanztudio.gdk.footballapps.ui.detail.detailteam.player
 
 import android.support.v7.widget.LinearLayoutManager
-import com.wanztudio.gdk.footballapps.ui.detail.detailplayers.player.view.TeamPlayerFragment
 import com.wanztudio.gdk.footballapps.ui.detail.detailteam.player.interactor.TeamPlayerInteractor
 import com.wanztudio.gdk.footballapps.ui.detail.detailteam.player.interactor.TeamPlayerMVPInteractor
 import com.wanztudio.gdk.footballapps.ui.detail.detailteam.player.presenter.TeamPlayerMVPPresenter
 import com.wanztudio.gdk.footballapps.ui.detail.detailteam.player.presenter.TeamPlayerPresenter
+import com.wanztudio.gdk.footballapps.ui.detail.detailteam.player.view.TeamPlayerFragment
 import com.wanztudio.gdk.footballapps.ui.detail.detailteam.player.view.TeamPlayerMVPView
 import dagger.Module
 import dagger.Provides

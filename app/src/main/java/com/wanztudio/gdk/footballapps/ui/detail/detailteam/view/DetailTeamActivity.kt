@@ -2,40 +2,25 @@ package com.wanztudio.gdk.footballapps.ui.detail.detailteam.view
 
 import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
-import android.service.autofill.CustomDescription
-import android.service.autofill.FieldClassification
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.support.v4.view.ViewPager
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import com.wanztudio.gdk.footballapps.R
-import com.wanztudio.gdk.footballapps.R.drawable.ic_add_to_favorites
-import com.wanztudio.gdk.footballapps.R.drawable.ic_added_to_favorites
 import com.wanztudio.gdk.footballapps.data.database.database
-import com.wanztudio.gdk.footballapps.data.database.model.FavoriteMatch
 import com.wanztudio.gdk.footballapps.data.database.model.FavoriteTeam
-import com.wanztudio.gdk.footballapps.data.network.Event
-import com.wanztudio.gdk.footballapps.data.network.Team
 import com.wanztudio.gdk.footballapps.ui.base.view.BaseActivity
 import com.wanztudio.gdk.footballapps.ui.base.view.BaseViewPagerAdapter
-import com.wanztudio.gdk.footballapps.ui.detail.detailplayers.player.view.TeamPlayerFragment
 import com.wanztudio.gdk.footballapps.ui.detail.detailteam.overview.view.TeamOverviewFragment
-import com.wanztudio.gdk.footballapps.ui.main.favorites.view.FavoriteFragment
-import com.wanztudio.gdk.footballapps.ui.main.matches.view.MatchFragment
-import com.wanztudio.gdk.footballapps.ui.main.teams.view.TeamFragment
-import com.wanztudio.gdk.footballapps.util.*
-import com.wanztudio.gdk.footballapps.util.extension.loadImage
+import com.wanztudio.gdk.footballapps.ui.detail.detailteam.player.view.TeamPlayerFragment
+import com.wanztudio.gdk.footballapps.util.Constants
+import com.wanztudio.gdk.footballapps.util.GlideApp
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
-import kotlinx.android.synthetic.main.activity_detail_match.*
 import kotlinx.android.synthetic.main.activity_detail_team.*
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.mtrl_layout_snackbar_include.*
 import org.jetbrains.anko.db.classParser
 import org.jetbrains.anko.db.delete
 import org.jetbrains.anko.db.insert
@@ -130,7 +115,7 @@ class DetailTeamActivity : BaseActivity(), HasSupportFragmentInjector {
                 if (!favorite.isEmpty()) isFavorite = true
             }
         } catch (e: SQLiteConstraintException) {
-            println("Error Getting data from database: ${e?.message}")
+            println("Error Getting data from database: ${e.message}")
         }
     }
 
@@ -148,7 +133,7 @@ class DetailTeamActivity : BaseActivity(), HasSupportFragmentInjector {
 
             detail_team_img_club.snackbar(R.string.info_add_favorite)
         } catch (e: SQLiteConstraintException) {
-            println("Error while inserting data to database: ${e?.message}")
+            println("Error while inserting data to database: ${e.message}")
             Log.getStackTraceString(e)
         }
     }
