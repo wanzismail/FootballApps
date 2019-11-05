@@ -1,7 +1,7 @@
 package com.wanztudio.gdk.footballapps.ui.detail.detailmatch.presenter
 
 import com.wanztudio.gdk.footballapps.ui.base.presenter.BasePresenter
-import com.wanztudio.gdk.footballapps.ui.detail.detailmatch.DetailMatchMVPInteractor
+import com.wanztudio.gdk.footballapps.ui.detail.detailmatch.interactor.DetailMatchMVPInteractor
 import com.wanztudio.gdk.footballapps.ui.detail.detailmatch.view.DetailMatchMVPView
 import com.wanztudio.gdk.footballapps.util.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
@@ -27,10 +27,10 @@ class DetailMatchPresenter<V : DetailMatchMVPView, I : DetailMatchMVPInteractor>
             compositeDisposable.add(it.getDetailTeamApiCall(idTeam)
                     .compose(schedulerProvider.ioToMainObservableScheduler())
                     .subscribe({ response ->
-                        response.teams?.let { info ->
-                            getView()?.showHomeTeam(info.get(0)!!)
-                            getView()?.hideLoading()
-                        }
+                      response.teams.let { info ->
+                        getView()?.showHomeTeam(info.get(0))
+                        getView()?.hideLoading()
+                      }
                     }, { err ->
                         println("Request failed.")
                         getView()?.hideLoading()
@@ -44,10 +44,10 @@ class DetailMatchPresenter<V : DetailMatchMVPView, I : DetailMatchMVPInteractor>
             compositeDisposable.add(it.getDetailTeamApiCall(idTeam)
                     .compose(schedulerProvider.ioToMainObservableScheduler())
                     .subscribe({ response ->
-                        response.teams?.let { info ->
-                            getView()?.showAwayTeam(info.get(0)!!)
-                            getView()?.hideLoading()
-                        }
+                      response.teams.let { info ->
+                        getView()?.showAwayTeam(info.get(0))
+                        getView()?.hideLoading()
+                      }
                     }, { err ->
                         println("Request failed.")
                         getView()?.hideLoading()

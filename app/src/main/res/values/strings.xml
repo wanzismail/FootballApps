@@ -18,9 +18,7 @@
     <string name="sample_away_team">Persija</string>
     <string name="message_no_network">No internet connection</string>
     <string name="title_match_detail">Match Detail</string>
-    <string name="title_player_detail">Player Detail</string>
-    <string name="title_team_detail">Team Detail</string>
-    <string name="label_goals">Goals</string>
+  <string name="label_goals">Goals</string>
     <string name="empty_data">Sorry, data not available.</string>
     <string name="label_shots">Shots</string>
     <string name="label_substitutes">Substitutes</string>
@@ -46,6 +44,5 @@
     <string name="sample_height">165</string>
     <string name="sample_player_description">Player Description</string>
     <string name="sample_player_position">Forward</string>
-    <string name="action_search">Search</string>
-    <string name="hint_search">Search</string>
+  <string name="hint_search">Search</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.wanztudio.gdk.footballapps.ui.detail.detailplayers.player.view
+package com.wanztudio.gdk.footballapps.ui.detail.detailteam.player.view
 
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
@@ -14,7 +14,6 @@ import com.wanztudio.gdk.footballapps.ui.base.view.BaseFragment
 import com.wanztudio.gdk.footballapps.ui.detail.detailteam.player.adapter.TeamPlayerAdapter
 import com.wanztudio.gdk.footballapps.ui.detail.detailteam.player.interactor.TeamPlayerMVPInteractor
 import com.wanztudio.gdk.footballapps.ui.detail.detailteam.player.presenter.TeamPlayerMVPPresenter
-import com.wanztudio.gdk.footballapps.ui.detail.detailteam.player.view.TeamPlayerMVPView
 import com.wanztudio.gdk.footballapps.util.Constants
 import com.wanztudio.gdk.footballapps.util.NetworkUtils
 import kotlinx.android.synthetic.main.fragment_player.*
@@ -92,10 +91,10 @@ class TeamPlayerFragment : BaseFragment(), TeamPlayerMVPView {
     }
 
     override fun showPlayers(listPlayer: List<Player>) {
-        listPlayer?.let {
-            empty_player_data.visibility = View.GONE
-            teamPlayerAdapter.addPlayersToList(listPlayer)
-        }
+      listPlayer.let {
+        empty_player_data.visibility = View.GONE
+        teamPlayerAdapter.addPlayersToList(listPlayer)
+      }
     }
 
     override fun showLoading() {

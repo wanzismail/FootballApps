@@ -2,7 +2,6 @@ package com.wanztudio.gdk.footballapps.ui.detail.detailmatch.interactor
 
 import com.wanztudio.gdk.footballapps.data.network.ApiHelper
 import com.wanztudio.gdk.footballapps.ui.base.interactor.BaseInteractor
-import com.wanztudio.gdk.footballapps.ui.detail.detailmatch.DetailMatchMVPInteractor
 import javax.inject.Inject
 
 
