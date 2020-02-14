@@ -1,4 +1,4 @@
-package com.wanztudio.gdk.footballapps.ui.detail.detailmatch
+package com.wanztudio.gdk.footballapps.ui.detail.detailmatch.interactor
 
 import com.wanztudio.gdk.footballapps.data.network.MatchResponse
 import com.wanztudio.gdk.footballapps.data.network.TeamResponse

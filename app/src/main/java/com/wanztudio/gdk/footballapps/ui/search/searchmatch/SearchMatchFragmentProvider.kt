@@ -3,7 +3,6 @@ package com.wanztudio.gdk.footballapps.ui.search.searchmatch
 import com.wanztudio.gdk.footballapps.ui.search.searchmatch.view.SearchMatchFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import kotlin.text.Typography.dagger
 
 
 /**

@@ -1,7 +1,7 @@
 package com.wanztudio.gdk.footballapps.ui.detail.detailmatch.presenter
 
 import com.wanztudio.gdk.footballapps.ui.base.presenter.MVPPresenter
-import com.wanztudio.gdk.footballapps.ui.detail.detailmatch.DetailMatchMVPInteractor
+import com.wanztudio.gdk.footballapps.ui.detail.detailmatch.interactor.DetailMatchMVPInteractor
 import com.wanztudio.gdk.footballapps.ui.detail.detailmatch.view.DetailMatchMVPView
 
 

@@ -9,13 +9,12 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import com.wanztudio.gdk.footballapps.R
-import com.wanztudio.gdk.footballapps.R.id.*
 import com.wanztudio.gdk.footballapps.data.database.database
 import com.wanztudio.gdk.footballapps.data.database.model.FavoriteMatch
 import com.wanztudio.gdk.footballapps.data.network.Event
 import com.wanztudio.gdk.footballapps.data.network.Team
 import com.wanztudio.gdk.footballapps.ui.base.view.BaseActivity
-import com.wanztudio.gdk.footballapps.ui.detail.detailmatch.DetailMatchMVPInteractor
+import com.wanztudio.gdk.footballapps.ui.detail.detailmatch.interactor.DetailMatchMVPInteractor
 import com.wanztudio.gdk.footballapps.ui.detail.detailmatch.presenter.DetailMatchMVPPresenter
 import com.wanztudio.gdk.footballapps.util.Constants
 import com.wanztudio.gdk.footballapps.util.DateUtils
@@ -55,7 +54,7 @@ class DetailMatchActivity : BaseActivity(), DetailMatchMVPView {
         setContentView(R.layout.activity_detail_match)
         presenter.onAttach(this)
 
-        supportActionBar?.setTitle(getString(R.string.title_match_detail))
+        supportActionBar?.title = getString(R.string.title_match_detail)
         supportActionBar?.setHomeButtonEnabled(true)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -80,14 +79,14 @@ class DetailMatchActivity : BaseActivity(), DetailMatchMVPView {
     override fun showEvent(event: Event) {
         this.event = event
 
-        detail_match_info_date.text = DateUtils.convertToDayDate(event!!.dateEvent)
-        detail_match_info_time.text = DateUtils.convertToTime(event!!.strTime)
-        detail_match_home_team_name.text = event!!.strHomeTeam
-        detail_match_away_team_name.text = event!!.strAwayTeam
-        detail_match_info_home_score.text = event!!.intHomeScore
-        detail_match_info_away_score.text = event!!.intAwayScore
+        detail_match_info_date.text = DateUtils.convertToDayDate(event.dateEvent)
+        detail_match_info_time.text = DateUtils.convertToTime(event.strTime)
+        detail_match_home_team_name.text = event.strHomeTeam
+        detail_match_away_team_name.text = event.strAwayTeam
+        detail_match_info_home_score.text = event.intHomeScore
+        detail_match_info_away_score.text = event.intAwayScore
 
-        event.intHomeScore?.let { detail_match_info_home_score.text = event.intHomeScore }
+        event.intHomeScore.let { detail_match_info_home_score.text = event.intHomeScore }
         event.strHomeFormation?.let {
             detail_match_home_team_formation.text = event.strHomeFormation
             detail_match_home_team_formation.visibility = View.VISIBLE
@@ -116,7 +115,7 @@ class DetailMatchActivity : BaseActivity(), DetailMatchMVPView {
             detail_match_info_home_substitutes.text = homeSubstitutes
         }
 
-        event.intAwayScore?.let { detail_match_info_away_score.text = event.intAwayScore }
+        event.intAwayScore.let { detail_match_info_away_score.text = event.intAwayScore }
         event.strAwayFormation?.let {
             detail_match_away_team_formation.text = event.strAwayFormation
             detail_match_away_team_formation.visibility = View.VISIBLE
@@ -145,7 +144,7 @@ class DetailMatchActivity : BaseActivity(), DetailMatchMVPView {
             detail_match_info_away_substitutes.text = awaySubstitutes
         }
 
-        presenter.getTeamAwayDetailApiCall(event.idHomeTeam)
+        presenter.getTeamHomeDetailApiCall(event.idHomeTeam)
         presenter.getTeamAwayDetailApiCall(event.idAwayTeam)
     }
 
@@ -174,7 +173,7 @@ class DetailMatchActivity : BaseActivity(), DetailMatchMVPView {
                 if (!favorite.isEmpty()) isFavorite = true
             }
         }catch(e: SQLiteConstraintException){
-            println("Error Getting data from database: ${ e?.message }")
+            println("Error Getting data from database: ${e.message}")
         }
     }
 
@@ -194,7 +193,7 @@ class DetailMatchActivity : BaseActivity(), DetailMatchMVPView {
 
             detail_match_progress_circular.snackbar(R.string.info_add_favorite)
         } catch (e: SQLiteConstraintException){
-            println("Error while inserting data to database: ${ e?.message }")
+            println("Error while inserting data to database: ${e.message}")
             Log.getStackTraceString(e)
         }
     }

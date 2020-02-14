@@ -1,6 +1,6 @@
 package com.wanztudio.gdk.footballapps.ui.detail.detailteam.player
 
-import com.wanztudio.gdk.footballapps.ui.detail.detailplayers.player.view.TeamPlayerFragment
+import com.wanztudio.gdk.footballapps.ui.detail.detailteam.player.view.TeamPlayerFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

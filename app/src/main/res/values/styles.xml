@@ -33,12 +33,7 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="ToolbarTheme" parent="@style/ThemeOverlay.AppCompat.Dark">
-        <item name="colorControlNormal">@color/white</item>
-        <item name="titleTextColor">@color/white</item>
-    </style>
-
-    <style name="MineCustomTabText" parent="TextAppearance.Design.Tab">
+  <style name="MineCustomTabText" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">@dimen/text_size_medium</item>
         <item name="fontPath">@string/typeface_regular</item>
     </style>
@@ -52,23 +47,4 @@
         <item name="color">@color/colorPrimaryText</item>
     </style>
 
-    <style name="BaseTextAppearanceHeader">
-        <item name="android:textSize">@dimen/text_size_header</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
-    </style>
-
-    <style name="BaseTextAppearancePrimary">
-        <item name="android:textSize">@dimen/text_size_medium</item>
-        <item name="android:textColor">?android:textColorPrimary</item>
-    </style>
-
-    <style name="BaseTextAppearanceSecondary">
-        <item name="android:textSize">@dimen/text_size_medium</item>
-        <item name="android:textColor">?android:textColorSecondary</item>
-    </style>
-
-    <style name="BaseTextAppearanceButton">
-        <item name="android:textColor">?android:textColorPrimary</item>
-        <item name="android:textSize">@dimen/text_size_medium</item>
-    </style>
 </resources>
