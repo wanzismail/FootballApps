@@ -89,7 +89,7 @@ class SearchMatchFragment : BaseFragment(), SearchMatchMVPView {
         if (NetworkUtils.isNetworkAvailable(requireContext())) {
             presenterMatch.searchMatch(keyWord)
         } else {
-            Toast.makeText(context, getString(R.string.message_no_network), Toast.LENGTH_SHORT)
+            Toast.makeText(context, getString(R.string.message_no_network), Toast.LENGTH_SHORT).show()
         }
     }
 
