@@ -75,7 +75,7 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
     override fun onFragmentDetached(tag: String) {
     }
 
-    private fun setUpPagerAdapter() {
+  private fun setUpPagerAdapter() {
         mainPagerAdapter = BaseViewPagerAdapter(this, supportFragmentManager, fragments, titles)
 
         main_viewpager.adapter = mainPagerAdapter
@@ -97,11 +97,10 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
                 prevMenuItem = main_bottom_navigation.getMenu().getItem(position)
 
                 when (position) {
-                    0, 2 -> expandToolbar(false)
-                    else -> expandToolbar(true)
+                    0, 1 -> expandToolbar(true)
+                    else -> expandToolbar(false)
                 }
-
-
+                
                 searchMenu?.let {
                     if(position == 2)
                         it.setVisible(false)
@@ -111,10 +110,9 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
             }
         })
 
-        expandToolbar(false)
         main_bottom_navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
     }
-
+    
     private fun expandToolbar(expandToolbar: Boolean) {
         var params = main_toolbar.getLayoutParams() as AppBarLayout.LayoutParams
 
