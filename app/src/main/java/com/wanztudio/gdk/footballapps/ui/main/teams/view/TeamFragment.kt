@@ -94,7 +94,7 @@ class TeamFragment : BaseFragment(), TeamMVPView {
         if (NetworkUtils.isNetworkAvailable(requireContext())) {
             presenter.getTeam(SELECTED_ID_LEAGUE)
         } else {
-            Toast.makeText(context, getString(R.string.message_no_network), Toast.LENGTH_SHORT)
+            Toast.makeText(context, getString(R.string.message_no_network), Toast.LENGTH_SHORT).show()
         }
     }
 
