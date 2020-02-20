@@ -86,7 +86,7 @@ class TeamPlayerFragment : BaseFragment(), TeamPlayerMVPView {
         if (NetworkUtils.isNetworkAvailable(requireContext())) {
             presenter.getTeamPlayer(idClub)
         } else {
-            Toast.makeText(context, getString(R.string.message_no_network), Toast.LENGTH_SHORT)
+            Toast.makeText(context, getString(R.string.message_no_network), Toast.LENGTH_SHORT).show()
         }
     }
 

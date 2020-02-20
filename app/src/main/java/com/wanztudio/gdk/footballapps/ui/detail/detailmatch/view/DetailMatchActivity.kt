@@ -66,7 +66,7 @@ class DetailMatchActivity : BaseActivity(), DetailMatchMVPView {
         if (NetworkUtils.isNetworkAvailable(this)) {
             presenter.getDetailEventApiCall(eventId)
         } else {
-            Toast.makeText(this, getString(R.string.message_no_network), Toast.LENGTH_SHORT)
+            Toast.makeText(this, getString(R.string.message_no_network), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -241,7 +241,7 @@ class DetailMatchActivity : BaseActivity(), DetailMatchMVPView {
                     isFavorite = !isFavorite
                     setFavorite()
                 } else {
-                    Toast.makeText(this, getString(R.string.alert_loading), Toast.LENGTH_SHORT)
+                    Toast.makeText(this, getString(R.string.alert_loading), Toast.LENGTH_SHORT).show()
                 }
                 true
             }
